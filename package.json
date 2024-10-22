@@ -30,7 +30,7 @@
     "lint-fix": "eslint ./src --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore ",
     "format": "prettier --ignore-path .gitignore --check ./src/",
     "format-fix": "prettier --ignore-path .gitignore --write ./src/",
-    "gen-client": "openapi --input ../narrowcasting-core/build/swagger.json --output src/api/ --useUnionTypes",
+    "gen-client": "openapi --input ../aurora-core/build/swagger.json --output src/api/ --useUnionTypes",
     "prepare": "husky"
   },
   "devDependencies": {
