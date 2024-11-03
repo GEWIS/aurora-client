@@ -4,10 +4,7 @@ export default function LogoPoster() {
       className="absolute top-0 left-0 w-full h-full flex justify-center items-center overflow-hidden bg-gewis bg-center bg-cover bg-no-repeat"
       style={{ backgroundImage: 'url("base/poster-background.png")' }}
     >
-      <div
-        className="w-1/3 h-full flex flex-col justify-center items-center"
-        style={{ paddingBottom: 80 }}
-      >
+      <div className="w-1/3 h-full flex flex-col justify-center items-center" style={{ paddingBottom: 80 }}>
         <img alt="GEWIS" src="/base/gewis-color.svg" className="gewis-logo" />
       </div>
     </div>

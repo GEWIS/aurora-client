@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import { Socket } from 'socket.io-client';
 import BlurredImage from '../stage-effects/components/backgrounds/BlurredImage';
 import { getSpotifyCurrentlyPlaying } from '../../api';
@@ -30,7 +29,7 @@ export default function SpotifyView({ socket }: Props) {
       handleTrackChange(res.data);
     });
 
-    socket.on('change_track', (event: any[]) => {
+    socket.on('change_track', (event: unknown[]) => {
       const trackChangeEvents = event[0] as TrackChangeEvent[];
       handleTrackChange(trackChangeEvents);
     });
@@ -38,13 +37,13 @@ export default function SpotifyView({ socket }: Props) {
     return () => {
       socket.removeAllListeners();
     };
-  }, []);
+  }, [socket]);
 
   return (
     <div className="relative">
       <BlurredImage cover={albumCover} />
       <div className="h-screen flex items-center justify-center relative">
-        <img className="h-1/2 mr-6" src={albumCover} />
+        <img alt="albumCover" className="h-1/2 mr-6" src={albumCover} />
         <div className="w-fit max-w-4xl flex flex-col justify-center font-raleway">
           <p
             className="text-white text-6xl p-4 font-semibold font-raleway"

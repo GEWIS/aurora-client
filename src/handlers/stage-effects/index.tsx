@@ -1,6 +1,6 @@
+import { EventEmitter } from 'events';
 import { Socket } from 'socket.io-client';
 import { useEffect, useState } from 'react';
-import { EventEmitter } from 'events';
 import StainedGlass from './components/backgrounds/StainedGlass';
 import BeatLogo from './components/BeatLogo';
 
@@ -11,17 +11,17 @@ interface Props {
 export default function StageEffectsView({ socket }: Props) {
   const [eventEmitter] = useState(new EventEmitter());
 
-  const handleBeat = () => {
-    eventEmitter.emit('beat');
-  };
-
   useEffect(() => {
+    const handleBeat = () => {
+      eventEmitter.emit('beat');
+    };
+
     socket.on('beat', handleBeat);
 
     return () => {
       socket.removeListener('beat', handleBeat);
     };
-  }, []);
+  }, [eventEmitter, socket]);
 
   return (
     <>

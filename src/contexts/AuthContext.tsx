@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useEffect, useMemo, useState } from 'react';
+import { createContext, PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ApiKeyParameters, authKey, AuthUser, getInformation } from '../api';
 
@@ -9,7 +9,7 @@ interface IAuthContext {
 
 const defaultContext: IAuthContext = {
   user: null,
-  loading: true
+  loading: true,
 };
 
 export const AuthContext = createContext(defaultContext);
@@ -20,7 +20,7 @@ export default function AuthContextProvider({ children }: PropsWithChildren) {
   const [urlSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  const authenticate = async () => {
+  const authenticate = useCallback(async () => {
     if (urlSearchParams.has('key')) {
       const key = urlSearchParams.get('key');
       const body: ApiKeyParameters = { key };
@@ -30,24 +30,24 @@ export default function AuthContextProvider({ children }: PropsWithChildren) {
       const info = await getInformation();
       setUser(info.data);
     }
-  };
+  }, [urlSearchParams]);
 
   useEffect(() => {
     authenticate().finally(() => setLoading(false));
-  }, []);
+  }, [authenticate]);
 
   useEffect(() => {
     if (user && urlSearchParams.has('key')) {
       navigate('');
     }
-  }, [user]);
+  }, [navigate, urlSearchParams, user]);
 
   const context = useMemo(
     (): IAuthContext => ({
       user,
-      loading
+      loading,
     }),
-    [user, loading]
+    [user, loading],
   );
 
   return <AuthContext.Provider value={context}>{children}</AuthContext.Provider>;

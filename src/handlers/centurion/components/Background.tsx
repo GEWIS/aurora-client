@@ -1,7 +1,6 @@
-import styles from '../centurion.module.css';
 import { clsx } from 'clsx';
-import React from 'react';
 import { Helmet } from 'react-helmet';
+import styles from '../centurion.module.css';
 import { CurrentColors } from '../index';
 import { imports, tweenMax } from '../scripts/imports';
 import { lavalampFragment, lavalampJavascript, lavalampVertex } from '../scripts/lavalamp';
@@ -18,9 +17,7 @@ export default function Background({ colors, progression }: Props) {
       <Helmet>
         <script type="text/javascript">{imports()}</script>
         <script type="text/javascript">{tweenMax()}</script>
-        <script type="text/javascript">
-          {lavalampJavascript(colors.start, colors.end, progression)}
-        </script>
+        <script type="text/javascript">{lavalampJavascript(colors.start, colors.end, progression)}</script>
         <script type="x-shader/x-vertex" id="vertexMetaballs">
           {lavalampVertex()}
         </script>
@@ -32,8 +29,8 @@ export default function Background({ colors, progression }: Props) {
       <div
         className={clsx(styles.fullscreen, styles.wallpaper, '-z-20')}
         style={{
-          ['--start-color-animation' as any]: colors.end,
-          ['--end-color-animation' as any]: colors.start
+          ['--start-color-animation' as string]: colors.end,
+          ['--end-color-animation' as string]: colors.start,
         }}
       >
         <canvas id="lavalamp-canvas" className={clsx(styles.fullscreen)}></canvas>

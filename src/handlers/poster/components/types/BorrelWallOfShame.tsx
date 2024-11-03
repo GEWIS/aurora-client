@@ -22,7 +22,7 @@ export default function BorrelWallOfShamePoster({ visible }: Props) {
       style={{
         background: 'url("/borrel/shame.gif") no-repeat center center fixed',
         backgroundSize: 'cover',
-        textShadow: 'black 0 0 0.5rem'
+        textShadow: 'black 0 0 0.5rem',
       }}
     >
       <VerticalScroll visible={visible} items={debtors.length}>
@@ -55,7 +55,7 @@ export default function BorrelWallOfShamePoster({ visible }: Props) {
                     break;
                 }
 
-                const name = !!debtor.nickName
+                const name = debtor.nickName
                   ? `${debtor.firstName} "${debtor.nickName}" ${debtor.lastName}`
                   : `${debtor.firstName} ${debtor.lastName}`;
 

@@ -8,9 +8,7 @@ interface Props {
 
 export default function BorrelPriceListPoster({ visible }: Props) {
   const [products, setProducts] = useState<Map<number, ProductResponse[]>>(new Map());
-  const [productCategories, setProductCategories] = useState<Map<number, ProductCategoryResponse>>(
-    new Map()
-  );
+  const [productCategories, setProductCategories] = useState<Map<number, ProductCategoryResponse>>(new Map());
 
   useEffect(() => {
     getSudoSosPriceList().then((res) => {
@@ -65,7 +63,7 @@ export default function BorrelPriceListPoster({ visible }: Props) {
         </thead>
         <tbody>
           {categoryProducts.map((p) => (
-            <tr>
+            <tr key={p.id}>
               <td className="text-left">{p.name}</td>
               <td className="text-right whitespace-nowrap">
                 € {(p.priceInclVat.amount / 100).toFixed(p.priceInclVat.precision)}
@@ -81,7 +79,7 @@ export default function BorrelPriceListPoster({ visible }: Props) {
     <div
       className="h-full w-full px-20 py-16 text-5xl text-white overflow-hidden bg-bac bg-cover"
       style={{
-        textShadow: 'black 0 0 0.5rem'
+        textShadow: 'black 0 0 0.5rem',
       }}
     >
       <div className="mb-10 flex gap-10 items-center">

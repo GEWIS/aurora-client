@@ -1,6 +1,6 @@
+import { useEffect, useMemo } from 'react';
 import { MediaPoster, PhotoPoster as ClientPhotoPoster, Poster } from '../../../api';
 import LogoPoster from './types/LogoPoster';
-import { useEffect, useMemo } from 'react';
 import ImagePoster from './types/ImagePoster';
 import ExternalPoster from './types/ExternalPoster';
 import VideoPoster from './types/VideoPoster';
@@ -18,8 +18,8 @@ interface Props {
 }
 
 export default function PosterCarousel({ posters, currentPoster, setTitle }: Props) {
-  const previousPoster = useMemo(() => (currentPoster - 1) % posters.length, [currentPoster]);
-  const nextPoster = useMemo(() => (currentPoster + 1) % posters.length, [currentPoster]);
+  const previousPoster = useMemo(() => (currentPoster - 1) % posters.length, [currentPoster, posters.length]);
+  const nextPoster = useMemo(() => (currentPoster + 1) % posters.length, [currentPoster, posters.length]);
 
   const renderPoster = (poster: Poster, index: number) => {
     if (index !== previousPoster && index !== currentPoster && index !== nextPoster) return null;
@@ -32,29 +32,12 @@ export default function PosterCarousel({ posters, currentPoster, setTitle }: Pro
       case 'img':
         return <ImagePoster key={poster.name} source={(poster as MediaPoster).source} />;
       case 'extern':
-        return (
-          <ExternalPoster
-            key={poster.name}
-            url={(poster as MediaPoster).source[0]}
-            visible={visible}
-          />
-        );
+        return <ExternalPoster key={poster.name} url={(poster as MediaPoster).source[0]} visible={visible} />;
       case 'video':
-        return (
-          <VideoPoster
-            key={poster.name}
-            source={(poster as MediaPoster).source}
-            visible={visible}
-          />
-        );
+        return <VideoPoster key={poster.name} source={(poster as MediaPoster).source} visible={visible} />;
       case 'photo':
         return (
-          <PhotoPoster
-            key={poster.name}
-            poster={poster as ClientPhotoPoster}
-            visible={visible}
-            setTitle={setTitle}
-          />
+          <PhotoPoster key={poster.name} poster={poster as ClientPhotoPoster} visible={visible} setTitle={setTitle} />
         );
       case 'borrel-logo':
         return <BorrelLogoPoster key={poster.name} />;
@@ -76,12 +59,13 @@ export default function PosterCarousel({ posters, currentPoster, setTitle }: Pro
     if (poster && poster.type !== 'photo') {
       setTitle(poster.label);
     }
-  }, [posters, currentPoster]);
+  }, [posters, currentPoster, setTitle]);
 
   return (
     <div className="w-full h-full top-0 left-0">
       {posters.map((p, i) => (
         <div
+          key={i}
           className={`
             absolute w-full h-full top-0 left-0
             transition-opacity duration-500

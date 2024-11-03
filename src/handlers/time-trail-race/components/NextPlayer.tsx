@@ -22,7 +22,7 @@ export default function NextPlayer({ name, bac, delay, time }: Props) {
       className="absolute overflow-hidden w-fit text-5xl"
       style={{
         animation: `${time ?? 10000}ms horizontal-marquee ${delay ?? 0}ms linear infinite`,
-        ...(bac === true ? bacShadow : {})
+        ...(bac === true ? bacShadow : {}),
       }}
     >
       Next up: {name}

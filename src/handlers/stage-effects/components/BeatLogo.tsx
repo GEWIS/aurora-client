@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import './BeatLogo.scss';
 
 interface Props {
@@ -10,9 +10,7 @@ interface Props {
 export default function BeatLogo({ eventEmitter, logo }: Props) {
   const ref = useRef<SVGSVGElement | null>(null);
   // ReturnType used instead of number as one of the dependencies uses @types/node as dependency
-  const [removeAnimation, setRemoveAnimation] = useState<ReturnType<typeof setTimeout> | null>(
-    null
-  );
+  const [removeAnimation, setRemoveAnimation] = useState<ReturnType<typeof setTimeout> | null>(null);
 
   const cleanupBeat = () => {
     if (!ref.current) return;
@@ -21,7 +19,7 @@ export default function BeatLogo({ eventEmitter, logo }: Props) {
     setRemoveAnimation(null);
   };
 
-  const handleBeat = () => {
+  const handleBeat = useCallback(() => {
     if (!ref.current) return;
 
     ref.current.style.animationName = 'beatPulse';
@@ -29,7 +27,7 @@ export default function BeatLogo({ eventEmitter, logo }: Props) {
     ref.current.style.animationIterationCount = '1';
     const timeout = setTimeout(cleanupBeat, 150);
     setRemoveAnimation(timeout);
-  };
+  }, []);
 
   useEffect(() => {
     eventEmitter.on('beat', handleBeat);
@@ -38,7 +36,7 @@ export default function BeatLogo({ eventEmitter, logo }: Props) {
       eventEmitter.removeListener('beat', handleBeat);
       if (removeAnimation) clearTimeout(removeAnimation);
     };
-  }, []);
+  }, [eventEmitter, handleBeat, removeAnimation]);
 
   return (
     <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center overflow-hidden">
@@ -48,7 +46,7 @@ export default function BeatLogo({ eventEmitter, logo }: Props) {
           width="100%"
           height="100%"
           style={{
-            filter: 'drop-shadow(3px 5px 2px rgb(0 0 0 /0.4)'
+            filter: 'drop-shadow(3px 5px 2px rgb(0 0 0 /0.4)',
           }}
         >
           <image x="0" y="0" width="100%" height="100%" xlinkHref={`public/${logo}`} />

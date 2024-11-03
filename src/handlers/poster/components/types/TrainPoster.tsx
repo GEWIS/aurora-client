@@ -43,9 +43,7 @@ export default function TrainPoster({ visible, timeout }: Props) {
 
   const renderDeparture = (t: TrainResponse) => {
     const departure = new Date(t.plannedDateTime);
-    const relativeDeparture = Math.floor(
-      (departure.getTime() - new Date().getTime()) / 60000 + t.delay
-    );
+    const relativeDeparture = Math.floor((departure.getTime() - new Date().getTime()) / 60000 + t.delay);
     const formatter = new Intl.ListFormat('en-gb', { style: 'long', type: 'conjunction' });
 
     return (
@@ -63,12 +61,7 @@ export default function TrainPoster({ visible, timeout }: Props) {
             <div className="flex flex-col justify-start">
               <div>
                 <span className="italic">
-                  <img
-                    className="inline-block"
-                    src={`trains/${t.operator}.svg`}
-                    alt={`${t.operator}`}
-                  />{' '}
-                  {t.trainType}
+                  <img className="inline-block" src={`trains/${t.operator}.svg`} alt={`${t.operator}`} /> {t.trainType}
                 </span>{' '}
                 {t.routeStations.length > 0 && `via ${formatter.format(t.routeStations)}`}
               </div>
@@ -85,7 +78,7 @@ export default function TrainPoster({ visible, timeout }: Props) {
       className="w-full h-full text-6xl"
       style={{
         backgroundColor: '#FEC917',
-        color: '#003082'
+        color: '#003082',
       }}
     >
       <VerticalScroll visible={visible} timeout={timeout} items={trains ? trains.length : 0}>
@@ -94,9 +87,10 @@ export default function TrainPoster({ visible, timeout }: Props) {
             className="text-center w-full text-6xl flex justify-center items-center gap-8"
             style={{ backgroundColor: '#003082', color: '#FEC917' }}
           >
-            <img src="trains/train.svg" className="align-bottom mb-2 h-32" />
+            <img alt="train" src="trains/train.svg" className="align-bottom mb-2 h-32" />
             <div>Departures from Eindhoven Centraal</div>
             <img
+              alt="train"
               src="trains/train.svg"
               className="align-bottom mb-2 h-32"
               style={{ transform: 'scaleX(-1)' }}

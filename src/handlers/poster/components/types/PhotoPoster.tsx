@@ -1,5 +1,5 @@
-import { PhotoPoster as IPhotoPoster, GEWISPhotoAlbumParams, getPhoto } from '../../../../api';
 import { useEffect, useState } from 'react';
+import { PhotoPoster as IPhotoPoster, GEWISPhotoAlbumParams, getPhoto } from '../../../../api';
 import ImagePoster from './ImagePoster';
 
 interface Props {
@@ -14,17 +14,17 @@ export default function PhotoPoster({ poster, visible, setTitle }: Props) {
 
   useEffect(() => {
     if (visible) setTitle(label);
-  }, [visible]);
+  }, [label, setTitle, visible]);
 
   useEffect(() => {
     const body: GEWISPhotoAlbumParams = {
-      albumIds: poster.albums
+      albumIds: poster.albums,
     };
     getPhoto({ body }).then((res) => {
       setUrl(res.data.url);
       setLabel(res.data.label);
     });
-  }, []);
+  }, [poster.albums]);
 
   return <ImagePoster source={url} />;
 }

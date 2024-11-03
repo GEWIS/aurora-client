@@ -2,10 +2,10 @@ import { io } from 'socket.io-client';
 import { Handlers } from '../HandlerSwitcher';
 
 export default function registerRootHandler(
-  setCurrentHandler: (value: ((prevState: Handlers) => Handlers) | Handlers | null) => void
+  setCurrentHandler: (value: ((prevState: Handlers) => Handlers) | Handlers | null) => void,
 ) {
-  let rootSocket = io('/', {
-    path: '/socket.io/'
+  const rootSocket = io('/', {
+    path: '/socket.io/',
   });
 
   rootSocket.on('connect', () => {

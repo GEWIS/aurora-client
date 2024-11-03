@@ -1,13 +1,8 @@
 import { useEffect, useState } from 'react';
-import {
-  CountryMedalResponse,
-  getDutchOlympicMedals,
-  getOlympicsMedalTable,
-  MedalTableRecord
-} from '../../../../api';
-import VerticalScroll from '../../../../components/VerticalScroll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMedal, faPlus, faRankingStar } from '@fortawesome/free-solid-svg-icons';
+import { CountryMedalResponse, getDutchOlympicMedals, getOlympicsMedalTable, MedalTableRecord } from '../../../../api';
+import VerticalScroll from '../../../../components/VerticalScroll';
 
 interface Props {
   visible: boolean;
@@ -57,10 +52,7 @@ export default function OlympicsPoster({ visible }: Props) {
             className="bg-black text-white bg-opacity-60 rounded-xl flex-1 h-full p-8 flex flex-col"
             style={{ maxHeight: 800 }}
           >
-            <div
-              className="text-center text-6xl font-medium pb-5"
-              style={{ fontFamily: 'Olympics2024' }}
-            >
+            <div className="text-center text-6xl font-medium pb-5" style={{ fontFamily: 'Olympics2024' }}>
               Medal table
             </div>
             <div className="w-full flex-1 overflow-hidden block">
@@ -88,10 +80,11 @@ export default function OlympicsPoster({ visible }: Props) {
                   </thead>
                   <tbody>
                     {medalTable.map((score) => (
-                      <tr>
+                      <tr key={score.countryName}>
                         <td className="p-2">{score.rank}</td>
                         <td className="p-2 flex flex-row gap-2 items-center">
                           <img
+                            alt="flag"
                             src={score.flagUrl}
                             style={{ height: '2rem', boxShadow: '0 0 5px #333333' }}
                           />
@@ -117,6 +110,7 @@ export default function OlympicsPoster({ visible }: Props) {
               style={{ fontFamily: 'Olympics2024' }}
             >
               <img
+                alt="flag"
                 src={dutchMedals?.flagUrl ?? ''}
                 style={{ height: '4rem', boxShadow: '0 0 5px #333333' }}
               />
@@ -137,20 +131,13 @@ export default function OlympicsPoster({ visible }: Props) {
               </div>
             </div>
             <div style={{ maxHeight: 570 }}>
-              <VerticalScroll
-                visible={visible}
-                items={dutchMedals?.medals.length ?? 0}
-                scrollEmptySpace
-              >
+              <VerticalScroll visible={visible} items={dutchMedals?.medals.length ?? 0} scrollEmptySpace>
                 <table>
                   <tbody>
                     {dutchMedals?.medals.map((medal) => (
-                      <tr>
+                      <tr key={medal.participantId + medal.eventId}>
                         <td className="pb-4 pr-4 text-6xl">
-                          <FontAwesomeIcon
-                            style={{ color: getMedalColor(medal.medal) }}
-                            icon={faMedal}
-                          />
+                          <FontAwesomeIcon style={{ color: getMedalColor(medal.medal) }} icon={faMedal} />
                         </td>
                         <td className="pb-4">
                           <p className="text-5xl">

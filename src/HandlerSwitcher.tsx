@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { Socket } from 'socket.io-client';
 import registerRootHandler from './events/rootHandler';
 import registerScreenHandler from './events/screenHandler';
 import './index.css';
@@ -6,7 +7,6 @@ import './index.css';
 import { default as CenturionView } from './handlers/centurion';
 import { default as SpotifyView } from './handlers/spotify';
 import { default as DefaultView, LoadingView, ReloadCountdown } from './handlers/default';
-import { Socket } from 'socket.io-client';
 import { AuthContext } from './contexts/AuthContext';
 import StageEffectsView from './handlers/stage-effects';
 import PosterView from './handlers/poster';
@@ -17,7 +17,7 @@ export enum Handlers {
   CENTURION = 'CenturionScreenHandler',
   POSTER = 'PosterScreenHandler',
   STAGE_EFFECTS = 'StageEffectsHandler',
-  TIME_TRAIL_RACE = 'TimeTrailRaceScreenHandler'
+  TIME_TRAIL_RACE = 'TimeTrailRaceScreenHandler',
 }
 
 export default function HandlerSwitcher() {
@@ -63,7 +63,7 @@ export default function HandlerSwitcher() {
     case Handlers.SPOTIFY:
       return <SpotifyView socket={screenSocket} />;
     case Handlers.POSTER:
-      return <PosterView socket={screenSocket} />;
+      return <PosterView />;
     case Handlers.STAGE_EFFECTS:
       return <StageEffectsView socket={screenSocket} />;
     case Handlers.TIME_TRAIL_RACE:

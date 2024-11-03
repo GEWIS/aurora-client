@@ -5,7 +5,7 @@ interface Props {
 }
 
 export default function ImagePoster({ source }: Props) {
-  let sourceUrl = useMemo(() => {
+  const sourceUrl = useMemo(() => {
     if ((Array.isArray(source) && source.length === 0) || source === '') {
       return '/base/avico-stuk.png';
     } else if (Array.isArray(source)) {

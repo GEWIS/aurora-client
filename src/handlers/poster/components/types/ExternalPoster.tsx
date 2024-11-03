@@ -13,15 +13,15 @@ export default function ExternalPoster({ url, visible }: Props) {
     if (!ref || !ref.current) return;
     ref.current.src = '';
     ref.current.src = url;
-  }, [visible]);
+  }, [url, visible]);
 
   return (
     <div className="w-full h-full relative">
       <ImagePoster source="/base/avico-stuk.png" />
       <iframe
+        title="External video"
         className="border-none w-full h-full overflow-hidden absolute top-0 z-30"
         src={url}
-        scrolling="no"
         seamless
         ref={ref}
       />
