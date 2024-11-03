@@ -63,7 +63,11 @@ export default function TrainPoster({ visible, timeout }: Props) {
             <div className="flex flex-col justify-start">
               <div>
                 <span className="italic">
-                  <img className="inline-block" src={`${t.operator}.svg`} alt={`${t.operator}`} />{' '}
+                  <img
+                    className="inline-block"
+                    src={`trains/${t.operator}.svg`}
+                    alt={`${t.operator}`}
+                  />{' '}
                   {t.trainType}
                 </span>{' '}
                 {t.routeStations.length > 0 && `via ${formatter.format(t.routeStations)}`}
@@ -90,10 +94,10 @@ export default function TrainPoster({ visible, timeout }: Props) {
             className="text-center w-full text-6xl flex justify-center items-center gap-8"
             style={{ backgroundColor: '#003082', color: '#FEC917' }}
           >
-            <img src="train.svg" className="align-bottom mb-2 h-32" />
+            <img src="trains/train.svg" className="align-bottom mb-2 h-32" />
             <div>Departures from Eindhoven Centraal</div>
             <img
-              src="train.svg"
+              src="trains/train.svg"
               className="align-bottom mb-2 h-32"
               style={{ transform: 'scaleX(-1)' }}
             />

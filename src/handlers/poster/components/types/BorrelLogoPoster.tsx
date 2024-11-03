@@ -13,7 +13,7 @@ export default function BorrelLogoPoster() {
       <div className="h-1/2">
         <img
           className="h-full"
-          src="/sudosos.svg"
+          src="/borrel/sudosos.svg"
           style={{ filter: 'drop-shadow(0 0px 10px rgba(0, 0, 0, 0.4))' }}
         />
       </div>

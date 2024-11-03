@@ -217,7 +217,7 @@ export default function CenturionView({ socket }: Props) {
           className="h-full w-full bg-center bg-cover bg-no-repeat -z-30"
           style={{
             filter: 'blur(2px)',
-            backgroundImage: 'url("scooter.jpeg")'
+            backgroundImage: 'url("/centurion/scooter.jpeg")'
           }}
         ></div>
       </div>

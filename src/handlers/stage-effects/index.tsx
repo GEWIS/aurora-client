@@ -27,7 +27,7 @@ export default function StageEffectsView({ socket }: Props) {
     <>
       <div className="h-screen w-screen">
         <StainedGlass />
-        <BeatLogo eventEmitter={eventEmitter} logo="bac.svg" />
+        <BeatLogo eventEmitter={eventEmitter} logo="borrel/bac.svg" />
       </div>
     </>
   );

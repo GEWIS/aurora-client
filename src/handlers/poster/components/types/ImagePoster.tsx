@@ -7,7 +7,7 @@ interface Props {
 export default function ImagePoster({ source }: Props) {
   let sourceUrl = useMemo(() => {
     if ((Array.isArray(source) && source.length === 0) || source === '') {
-      return '/avico-stuk.png';
+      return '/base/avico-stuk.png';
     } else if (Array.isArray(source)) {
       const index = Math.floor(Math.random() * source.length);
       return source[index];

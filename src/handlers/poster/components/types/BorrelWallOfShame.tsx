@@ -20,7 +20,7 @@ export default function BorrelWallOfShamePoster({ visible }: Props) {
     <div
       className="text-white w-full h-full text-5xl"
       style={{
-        background: 'url("/shame.gif") no-repeat center center fixed',
+        background: 'url("/borrel/shame.gif") no-repeat center center fixed',
         backgroundSize: 'cover',
         textShadow: 'black 0 0 0.5rem'
       }}

@@ -43,7 +43,13 @@ export default function ProgressBar({
               viewBox="0 0 50 100"
               height="50"
             >
-              <image x="0" y="0" height="100%" width="100%" xlinkHref={'/gewis-base-black.svg'} />
+              <image
+                x="0"
+                y="0"
+                height="100%"
+                width="100%"
+                xlinkHref={'/base/gewis-base-black.svg'}
+              />
             </svg>
             {borrelMode && (
               <svg
@@ -53,7 +59,7 @@ export default function ProgressBar({
                 viewBox="0 0 100 100"
                 height="40"
               >
-                <image x="0" y="0" height="100%" width="100%" xlinkHref={'/sudosos.svg'} />
+                <image x="0" y="0" height="100%" width="100%" xlinkHref={'/borrel/sudosos.svg'} />
               </svg>
             )}
           </div>
