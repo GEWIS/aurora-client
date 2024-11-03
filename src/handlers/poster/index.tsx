@@ -14,7 +14,8 @@ export default function PosterView({ socket }: Props) {
   const [posters, setPosters] = useState<Poster[]>();
   const [borrelMode, setBorrelMode] = useState(false);
   const [posterIndex, setPosterIndex] = useState(-1);
-  const [posterTimeout, setPosterTimeout] = useState<number | undefined>();
+  // ReturnType used instead of number as one of the dependencies uses @types/node as dependency
+  const [posterTimeout, setPosterTimeout] = useState<ReturnType<typeof setTimeout> | undefined>();
   const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState('');
 

@@ -15,7 +15,8 @@ export default function VerticalScroll({
   items,
   scrollEmptySpace
 }: Props) {
-  const [timeoutRef, setTimeoutRef] = useState<number | undefined>();
+  // ReturnType used instead of number as one of the dependencies uses @types/node as dependency
+  const [timeoutRef, setTimeoutRef] = useState<ReturnType<typeof setTimeout> | undefined>();
   const [iteration, setIteration] = useState(0);
 
   const containerRef = useRef<HTMLDivElement>();

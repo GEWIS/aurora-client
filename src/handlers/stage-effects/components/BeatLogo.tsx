@@ -9,7 +9,10 @@ interface Props {
 
 export default function BeatLogo({ eventEmitter, logo }: Props) {
   const ref = useRef<SVGSVGElement | null>(null);
-  const [removeAnimation, setRemoveAnimation] = useState<number | null>(null);
+  // ReturnType used instead of number as one of the dependencies uses @types/node as dependency
+  const [removeAnimation, setRemoveAnimation] = useState<ReturnType<typeof setTimeout> | null>(
+    null
+  );
 
   const cleanupBeat = () => {
     if (!ref.current) return;
