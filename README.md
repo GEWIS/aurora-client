@@ -7,15 +7,15 @@ However, if extra information is needed (for example to render a certain poster)
 the client can make HTTP calls to the core to request this data.
 
 ## Prerequisites
-- NodeJS 20.
+- NodeJS 22.
 - A locally running copy of [aurora-core](https://github.com/gewis/narrowcasting-core).
   The backoffice repository should be cloned next to the core repository, so in the folder `../aurora-core`.
   This is necessary to generate the required API client files (installation step 2).
 
 ## Installation
-1. Run `npm install`.
-2. Run `npm run gen-client` to generate the Typescript files required to communicate with the core.
-3. Run `npm run dev`.
+1. Run `yarn install`.
+2. Run `yarn gen-client` to generate the Typescript files required to communicate with the core.
+3. Run `yarn dev`.
 4. The application should now be running at http://localhost:8080.
 You can authenticate a screen on the client by going to th URL https://localhost:8081/?key=KEY_HERE.
 
