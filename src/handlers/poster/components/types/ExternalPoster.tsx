@@ -17,7 +17,7 @@ export default function ExternalPoster({ url, visible }: Props) {
 
   return (
     <div className="w-full h-full relative">
-      <ImagePoster source="/avico-stuk.png" />
+      <ImagePoster source="/base/avico-stuk.png" />
       <iframe
         className="border-none w-full h-full overflow-hidden absolute top-0 z-30"
         src={url}

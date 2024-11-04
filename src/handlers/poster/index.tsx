@@ -74,7 +74,7 @@ export default function PosterView({ socket }: Props) {
   return (
     <div
       className="h-screen w-screen bg-center bg-cover bg-no-repeat"
-      style={{ backgroundImage: 'url("poster-background.png")' }}
+      style={{ backgroundImage: 'url("base/poster-background.png")' }}
     >
       <div className="overflow-hidden w-full h-full">
         <PosterCarousel
