@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "@gewis/eslint-config": "github:GEWIS/eslint-config#v2.0.0",
+    "@hey-api/openapi-ts": "^0.54.2",
     "@types/node": "^22.8.7",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",

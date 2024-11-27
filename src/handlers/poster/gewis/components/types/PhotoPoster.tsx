@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { PhotoPoster as IPhotoPoster, GEWISPhotoAlbumParams, getPhoto } from '../../../../api';
-import ImagePoster from './ImagePoster';
+import { PhotoPoster as IPhotoPoster, GEWISPhotoAlbumParams, getPhoto } from '../../../../../api';
+import ImagePoster from './ImagePoster.tsx';
 
 interface Props {
   poster: IPhotoPoster;
