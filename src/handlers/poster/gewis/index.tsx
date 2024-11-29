@@ -1,12 +1,19 @@
-import PosterBaseView from '../index.tsx';
-import { PhotoPoster as ClientPhotoPoster, Poster } from '../../../api';
-import OverlayGewis from './components/OverlayGewis.tsx';
-import BorrelLogoPoster from './components/types/BorrelLogoPoster.tsx';
-import BorrelWallOfShamePoster from './components/types/BorrelWallOfShame.tsx';
-import BorrelPriceListPoster from './components/types/BorrelPriceListPoster.tsx';
-import TrainPoster from './components/types/TrainPoster.tsx';
-import OlympicsPoster from './components/types/OlympicsPoster.tsx';
-import PhotoPoster from './components/types/PhotoPoster.tsx';
+import { RequestResult } from '@hey-api/client-fetch';
+import PosterBaseView from '../';
+import {
+  PhotoPoster as ClientPhotoPoster,
+  getGewisPosters,
+  Poster,
+  BasePosterResponse,
+  GewisPosterResponse,
+} from '../../../api';
+import OverlayGewis from './components/OverlayGewis';
+import BorrelLogoPoster from './components/types/BorrelLogoPoster';
+import BorrelWallOfShamePoster from './components/types/BorrelWallOfShame';
+import BorrelPriceListPoster from './components/types/BorrelPriceListPoster';
+import TrainPoster from './components/types/TrainPoster';
+import OlympicsPoster from './components/types/OlympicsPoster';
+import PhotoPoster from './components/types/PhotoPoster';
 
 export default function PosterGewisView() {
   const localPosterRenderer = (poster: Poster, visible: boolean, setTitle: (title: string) => void) => {
@@ -28,5 +35,11 @@ export default function PosterGewisView() {
     }
   };
 
-  return <PosterBaseView overlay={OverlayGewis} localPosterRenderer={localPosterRenderer} />;
+  return (
+    <PosterBaseView
+      overlay={OverlayGewis}
+      localPosterRenderer={localPosterRenderer}
+      getPosters={getGewisPosters as unknown as () => Promise<RequestResult<BasePosterResponse | GewisPosterResponse>>}
+    />
+  );
 }

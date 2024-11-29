@@ -17,7 +17,7 @@ import RoomResponsibleLegacyView from './handlers/room-responsible-legacy';
 export enum Handlers {
   SPOTIFY = 'CurrentlyPlayingTrackHandler',
   CENTURION = 'CenturionScreenHandler',
-  GEWIS_POSTER = 'PosterScreenHandler',
+  GEWIS_POSTER = 'GewisPosterScreenHandler',
   HUBBLE_POSTER = 'HubblePosterScreenHandler',
   STAGE_EFFECTS = 'StageEffectsHandler',
   TIME_TRAIL_RACE = 'TimeTrailRaceScreenHandler',

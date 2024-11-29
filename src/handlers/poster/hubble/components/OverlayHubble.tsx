@@ -2,21 +2,14 @@ import { OverlayProps } from '../../index.tsx';
 import HubbleProgressBar from './HubbleProgressBar.tsx';
 import HubbleOrderView from './HubbleOrderView.tsx';
 
-export default function OverlayHubble({
-  // poster,
-  seconds,
-  posterIndex,
-  nextPoster,
-  pausePoster,
-}: OverlayProps) {
+export default function OverlayHubble({ poster, seconds, posterIndex, nextPoster, pausePoster }: OverlayProps) {
   return (
     <>
       <HubbleProgressBar
         seconds={seconds}
         posterIndex={posterIndex}
         hideClock={false}
-        // color={poster.color}
-        color={'#ffffff'}
+        color={poster?.color}
         nextPoster={nextPoster}
         pausePoster={pausePoster}
       />

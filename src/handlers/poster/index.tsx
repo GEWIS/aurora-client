@@ -1,6 +1,7 @@
 import './gewis/components/index.scss';
 import { ReactNode, useEffect, useState } from 'react';
-import { getPosters, Poster } from '../../api';
+import { RequestResult } from '@hey-api/client-fetch';
+import { BasePosterResponse, GewisPosterResponse, Poster } from '../../api';
 import PosterCarousel from './components/Carousel';
 
 export interface OverlayProps {
@@ -16,9 +17,10 @@ export interface OverlayProps {
 interface Props {
   overlay: (overlayProps: OverlayProps) => ReactNode;
   localPosterRenderer?: (poster: Poster, visible: boolean, setTitle: (title: string) => void) => ReactNode;
+  getPosters: () => Promise<RequestResult<BasePosterResponse | GewisPosterResponse>>;
 }
 
-export default function PosterBaseView({ overlay, localPosterRenderer }: Props) {
+export default function PosterBaseView({ overlay, localPosterRenderer, getPosters }: Props) {
   const [posters, setPosters] = useState<Poster[]>();
   const [borrelMode, setBorrelMode] = useState(false);
   const [posterIndex, setPosterIndex] = useState<number>();
@@ -32,7 +34,8 @@ export default function PosterBaseView({ overlay, localPosterRenderer }: Props) 
     // TODO what to do if poster cannot be fetched?
     const newPosters = await getPosters();
     setPosters(newPosters.data!.posters);
-    setBorrelMode(newPosters.data!.borrelMode);
+    if ((newPosters.data! as GewisPosterResponse).borrelMode)
+      setBorrelMode((newPosters.data! as GewisPosterResponse).borrelMode);
     setLoading(false);
   };
 
