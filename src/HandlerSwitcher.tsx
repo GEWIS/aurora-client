@@ -9,14 +9,16 @@ import { default as SpotifyView } from './handlers/spotify';
 import { default as DefaultView, LoadingView, ReloadCountdown } from './handlers/default';
 import { AuthContext } from './contexts/AuthContext';
 import StageEffectsView from './handlers/stage-effects';
-import PosterView from './handlers/poster';
 import TimeTrailRaceView from './handlers/time-trail-race';
+import PosterGewisView from './handlers/poster/gewis';
+import PosterHubbleView from './handlers/poster/hubble';
 import RoomResponsibleLegacyView from './handlers/room-responsible-legacy';
 
 export enum Handlers {
   SPOTIFY = 'CurrentlyPlayingTrackHandler',
   CENTURION = 'CenturionScreenHandler',
-  POSTER = 'PosterScreenHandler',
+  GEWIS_POSTER = 'GewisPosterScreenHandler',
+  HUBBLE_POSTER = 'HubblePosterScreenHandler',
   STAGE_EFFECTS = 'StageEffectsHandler',
   TIME_TRAIL_RACE = 'TimeTrailRaceScreenHandler',
   ROOM_RESPONSIBLE_LEGACY = 'RoomResponsibleLegacyHandler',
@@ -64,8 +66,10 @@ export default function HandlerSwitcher() {
       return <CenturionView socket={screenSocket} />;
     case Handlers.SPOTIFY:
       return <SpotifyView socket={screenSocket} />;
-    case Handlers.POSTER:
-      return <PosterView />;
+    case Handlers.GEWIS_POSTER:
+      return <PosterGewisView />;
+    case Handlers.HUBBLE_POSTER:
+      return <PosterHubbleView />;
     case Handlers.STAGE_EFFECTS:
       return <StageEffectsView socket={screenSocket} />;
     case Handlers.TIME_TRAIL_RACE:
