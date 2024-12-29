@@ -1,14 +1,11 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
+import { Order } from '../api';
 
 interface Props {
-  orders: string[];
+  orders: Order[];
 }
 
-export default function HubbleOrderView({ orders }: Props) {
-  useEffect(() => {
-    //   Do something when the orders change
-  }, [orders]);
-
+export default function OrderList({ orders }: Props) {
   return (
     // bg-blue-500
     <div className="absolute top-0 right-0 z-50 m-4 text-white" style={{ height: '85%', fontSize: '5.5vh' }}>
@@ -22,7 +19,7 @@ export default function HubbleOrderView({ orders }: Props) {
           >
             {orders.map((order, index) => (
               <div key={index} className="bg-gray-400 p-4 bg-opacity-80 rounded-lg text-center animate-slide-in">
-                {order}
+                {order.number}
               </div>
             ))}
           </div>
