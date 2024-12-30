@@ -1,6 +1,6 @@
 import { Socket } from 'socket.io-client';
 import { useCallback, useEffect, useState } from 'react';
-import { Order } from '../api';
+import { getAllOrders, Order } from '../api';
 import OrderList from '../components/OrderList';
 
 interface Props {
@@ -8,20 +8,14 @@ interface Props {
 }
 
 export default function OrdersOverlay({ socket }: Props) {
-  const [orders, setOrders] = useState<Order[]>([
-    {
-      number: -420,
-      startTime: new Date().toISOString(),
-      timeoutSeconds: 3600,
-    },
-    {
-      number: -69,
-      startTime: new Date().toISOString(),
-      timeoutSeconds: 3600,
-    },
-  ]);
+  const [orders, setOrders] = useState<Order[]>([]);
 
   useEffect(() => {
+    getAllOrders().then((ordersRes) => {
+      if (!ordersRes.data) return;
+      setOrders(ordersRes.data);
+    });
+
     socket.on('orders', (newOrderSet) => {
       setOrders(newOrderSet[0].orders);
     });
