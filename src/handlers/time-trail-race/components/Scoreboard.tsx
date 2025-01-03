@@ -1,7 +1,7 @@
 import { CSSProperties } from 'react';
 import { PlayerParams, ScoreboardItem } from '../../../api';
 import { toStopwatchString } from '../helpers/time';
-import '../../poster/components/types/ScrollAnimation.scss';
+import '../../poster/components/ScrollAnimation.scss';
 import VerticalScroll from '../../../components/VerticalScroll';
 import { bacShadow, redShadow } from '../../../style/shadows';
 

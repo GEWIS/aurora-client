@@ -1,5 +1,5 @@
+import ProgressBarSlider from '../../components/ProgressBarSlider';
 import Clock from './Clock';
-import ProgressBarSlider from './ProgressBarSlider';
 
 interface Props {
   title?: string;
@@ -12,7 +12,7 @@ interface Props {
   pausePoster?: () => void;
 }
 
-export default function ProgressBar({
+export default function GewisProgressBar({
   title,
   seconds,
   posterIndex,
@@ -29,7 +29,7 @@ export default function ProgressBar({
     >
       <div className="absolute w-full" style={{ height: 5, marginTop: -2, bottom: minimal || hide ? 0 : '' }}>
         {seconds !== undefined && posterIndex !== undefined && (
-          <ProgressBarSlider seconds={seconds} posterIndex={posterIndex} />
+          <ProgressBarSlider seconds={seconds} posterIndex={posterIndex} color="#c40000" />
         )}
       </div>
       <div className={`flex-grow flex justify-center items-center px-6 ${hide ? 'hidden' : ''}`}>

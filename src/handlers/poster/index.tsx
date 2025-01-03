@@ -1,10 +1,26 @@
-import './index.scss';
-import { useEffect, useState } from 'react';
-import { FooterSize, getPosters, Poster } from '../../api';
-import ProgressBar from './components/ProgressBar';
+import './gewis/components/index.scss';
+import { ReactNode, useEffect, useState } from 'react';
+import { RequestResult } from '@hey-api/client-fetch';
+import { BasePosterResponse, GewisPosterResponse, Poster } from '../../api';
 import PosterCarousel from './components/Carousel';
 
-export default function PosterView() {
+export interface OverlayProps {
+  poster?: Poster;
+  posterTitle: string;
+  seconds?: number;
+  posterIndex?: number;
+  nextPoster: () => void;
+  pausePoster: () => void;
+  borrelMode?: boolean;
+}
+
+interface Props {
+  overlay: (overlayProps: OverlayProps) => ReactNode;
+  localPosterRenderer?: (poster: Poster, visible: boolean, setTitle: (title: string) => void) => ReactNode;
+  getPosters: () => Promise<RequestResult<BasePosterResponse | GewisPosterResponse>>;
+}
+
+export default function PosterBaseView({ overlay, localPosterRenderer, getPosters }: Props) {
   const [posters, setPosters] = useState<Poster[]>();
   const [borrelMode, setBorrelMode] = useState(false);
   const [posterIndex, setPosterIndex] = useState<number>();
@@ -18,7 +34,8 @@ export default function PosterView() {
     // TODO what to do if poster cannot be fetched?
     const newPosters = await getPosters();
     setPosters(newPosters.data!.posters);
-    setBorrelMode(newPosters.data!.borrelMode);
+    if ((newPosters.data! as GewisPosterResponse).borrelMode)
+      setBorrelMode((newPosters.data! as GewisPosterResponse).borrelMode);
     setLoading(false);
   };
 
@@ -68,7 +85,7 @@ export default function PosterView() {
     }
   }, [posters, loading, posterTimeout]);
 
-  const selectedPoster = posters && posters.length > 0 && posterIndex !== undefined ? posters[posterIndex] : null;
+  const selectedPoster = posters && posters.length > 0 && posterIndex !== undefined ? posters[posterIndex] : undefined;
 
   return (
     <div
@@ -76,17 +93,21 @@ export default function PosterView() {
       style={{ backgroundImage: 'url("base/poster-background.png")' }}
     >
       <div className="overflow-hidden w-full h-full">
-        <PosterCarousel posters={posters || []} currentPoster={!posterIndex ? 0 : posterIndex} setTitle={setTitle} />
-        <ProgressBar
-          title={title}
-          seconds={posterTimeout !== undefined ? selectedPoster?.timeout : undefined}
-          posterIndex={posterIndex}
-          minimal={selectedPoster?.footer === FooterSize.MINIMAL}
-          hide={selectedPoster?.footer === FooterSize.HIDDEN}
-          borrelMode={borrelMode}
-          nextPoster={nextPoster}
-          pausePoster={pausePoster}
+        <PosterCarousel
+          posters={posters || []}
+          currentPoster={!posterIndex ? 0 : posterIndex}
+          setTitle={setTitle}
+          localPosterRenderer={localPosterRenderer}
         />
+        {overlay({
+          poster: selectedPoster,
+          posterTitle: title,
+          seconds: posterTimeout !== undefined ? selectedPoster?.timeout : undefined,
+          posterIndex: posterIndex,
+          nextPoster: nextPoster,
+          pausePoster: pausePoster,
+          borrelMode: borrelMode,
+        })}
       </div>
     </div>
   );

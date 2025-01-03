@@ -1,0 +1,18 @@
+* {
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box; /* Opera/IE 8+ */
+}
+
+body {
+  transition: background ease-in-out;
+  font-family: 'Raleway', sans-serif;
+  //font-size: 1.75em;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+
+.text-shadow {
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 /0.4));
+}
