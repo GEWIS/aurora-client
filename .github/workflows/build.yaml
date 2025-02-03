@@ -49,10 +49,9 @@ jobs:
   build-and-lint:
     needs:
       generate-client-files
-    uses: GEWIS/actions/.github/workflows/typescript-lint-and-build.yml@v0.0.2
+    uses: GEWIS/actions/.github/workflows/lint-and-build-yarn.yml@v1
     with:
       node-version: "22.x"
-      package-manager: "yarn"
       artifact-name: "api-client"
       artifact-path: "src/api"
       lint: true
