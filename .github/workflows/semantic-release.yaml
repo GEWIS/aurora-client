@@ -2,18 +2,17 @@ name: Semantic release
 
 on:
   push:
-    branches: 
-    - main
-  pull_request:
-    branches: 
-    - main
+    branches:
+      - master
 
 jobs:
   versioning:
-    uses: GEWIS/actions/.github/workflows/typescript-lint-and-build.yml@v1
+    uses: GEWIS/actions/.github/workflows/versioning.yml@v1
 
   release:
     uses: GEWIS/actions/.github/workflows/docker-release.yml@v1
+    needs: versioning
+    if: ${{ needs.versioning.outputs.next-version != '' }}
     with:
       projects: '["."]'
       version: ${{ needs.versioning.outputs.next-version }}
