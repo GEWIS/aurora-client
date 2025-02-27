@@ -1,4 +1,4 @@
-import { OverlayProps } from '../../index';
+import { OverlayProps } from '../../PosterBaseView';
 import HubbleProgressBar from './HubbleProgressBar';
 export default function OverlayHubble({ poster, seconds, posterIndex, nextPoster, pausePoster }: OverlayProps) {
   return (

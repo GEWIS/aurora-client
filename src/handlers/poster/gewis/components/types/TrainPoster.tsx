@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getTrains, TrainResponse } from '../../../../../api';
 import './TrainPoster.scss';
-import VerticalScroll from '../../../../../components/VerticalScroll.tsx';
+import VerticalScroll from '../../../../../components/VerticalScroll';
 
 interface Props {
   visible: boolean;

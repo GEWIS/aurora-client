@@ -1,4 +1,4 @@
-import { OverlayProps } from '../../index.tsx';
+import { OverlayProps } from '../../PosterBaseView';
 import { FooterSize } from '../../../../api';
 import GewisProgressBar from './GewisProgressBar';
 
