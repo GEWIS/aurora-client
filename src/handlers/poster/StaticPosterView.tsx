@@ -2,7 +2,7 @@ import { Socket } from 'socket.io-client';
 import { useEffect, useState } from 'react';
 import { getStaticPosterHandlerState, StaticPosterHandlerState } from '../../api';
 import BackgroundStarryNight from '../../components/backgrounds/StarryNight';
-import { LogoCentered } from '../../components/aurora-logos/LogoCentered';
+import { LogoCentered } from '../../components/aurora-logos/LogoCentered.tsx';
 import ImagePoster from './gewis/components/types/ImagePoster';
 import VideoPoster from './gewis/components/types/VideoPoster';
 import ExternalPoster from './gewis/components/types/ExternalPoster';

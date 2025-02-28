@@ -1,5 +1,6 @@
 import { clsx } from 'clsx';
 import styles from '../centurion.module.css';
+import { LogoLine } from '../../../components/aurora-logos/LogoLine.tsx';
 
 interface Props {
   albumCover: string;
@@ -18,8 +19,7 @@ export default function Information(props: Props) {
         style={{ backgroundImage: 'linear-gradient(rgba(0, 0, 0, 1), rgba(0,0,0,0.7) 70%, rgb(0, 0, 0, 0) 100%)' }}
       >
         <div className="w-full flex justify-center h-full opacity-90">
-          <img src="/base/helmet-white.svg" alt="Aurora" className="h-2/3 pe-1" style={{ filter: 'invert(10%)' }} />
-          <p className="text-neutral-100 text-4xl italic">Powered by Aurora</p>
+          <LogoLine variant="left" size="2rem" />
         </div>
       </div>
       <div className="flex-grow"></div>
