@@ -1552,10 +1552,10 @@
     react-use "17.4.0"
     throttle-debounce "^3.0.1"
 
-"@hey-api/client-fetch@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@hey-api/client-fetch/-/client-fetch-0.4.2.tgz#02924579205dcfd4cb7c33db236007cb617ab30d"
-  integrity sha512-9BqcLTjsM3rWbads3afJkELS86vK7EqJvYgT429EVS9IO/kN75HEka3Ay/k142xCHSfXOuOShMdDam3nbG8wVA==
+"@hey-api/client-fetch@^0.8.2":
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/@hey-api/client-fetch/-/client-fetch-0.8.2.tgz#675aadfbc9478bb8eef5679f11a9334258dff4c8"
+  integrity sha512-61T4UGfAzY5345vMxWDX8qnSTNRJcOpWuZyvNu3vNebCTLPwMQAM85mhEuBoACdWeRtLhNoUjU0UR5liRyD1bA==
 
 "@hey-api/openapi-ts@^0.54.2":
   version "0.54.4"
