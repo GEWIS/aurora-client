@@ -43,11 +43,23 @@ export default function StaticPosterView({ socket }: Props) {
     };
   }, [socket]);
 
+  const renderDefaultScreen = () => {
+    return (
+      <div className="absolute top-0 w-full h-full">
+        <BackgroundStarryNight backgroundColor="red">
+          <div className="w-full h-full flex justify-center items-center">
+            <LogoCentered size="5rem" />
+          </div>
+        </BackgroundStarryNight>
+      </div>
+    );
+  };
+
   const renderPoster = () => {
-    if (url === '') return null;
+    if (url === '') return renderDefaultScreen();
 
     const extension = url.split('.').pop();
-    if (!extension) return null;
+    if (!extension) return renderDefaultScreen();
 
     if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(extension)) {
       return <ImagePoster source={url} />;
@@ -61,13 +73,6 @@ export default function StaticPosterView({ socket }: Props) {
   return (
     <div className="relative w-screen h-screen">
       <div className="overflow-hidden absolute w-full h-full">{renderPoster()}</div>
-      <div className="absolute top-0 w-full h-full">
-        <BackgroundStarryNight backgroundColor="red">
-          <div className="w-full h-full flex justify-center items-center">
-            <LogoCentered size="5rem" />
-          </div>
-        </BackgroundStarryNight>
-      </div>
       {clock && <GewisProgressBar />}
     </div>
   );

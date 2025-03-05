@@ -11,7 +11,7 @@ export default function BackgroundStarryNight({ children, backgroundColor, hideS
 
   return (
     <div
-      className="w-full h-full"
+      className="w-full h-full overflow-hidden"
       style={{
         background: `radial-gradient(ellipse at bottom, ${bgColor} 0%, #090A0F 100%)`,
       }}
