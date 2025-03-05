@@ -3,6 +3,10 @@ import { useCallback, useEffect, useState } from 'react';
 import { getAllOrders, Order } from '../api';
 import OrderList from '../components/OrderList';
 
+interface ShowOrdersEvent {
+  orders: Order[];
+}
+
 interface Props {
   socket: Socket;
 }
@@ -11,13 +15,17 @@ export default function OrdersOverlay({ socket }: Props) {
   const [orders, setOrders] = useState<Order[]>([]);
 
   useEffect(() => {
-    getAllOrders().then((ordersRes) => {
-      if (!ordersRes.data) return;
-      setOrders(ordersRes.data);
-    });
+    getAllOrders()
+      .then((ordersRes) => {
+        if (!ordersRes.data) return;
+        setOrders(ordersRes.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
 
     socket.on('orders', (newOrderSet) => {
-      setOrders(newOrderSet[0].orders);
+      setOrders((newOrderSet as ShowOrdersEvent[])[0].orders);
     });
 
     return () => {
@@ -52,7 +60,10 @@ export default function OrdersOverlay({ socket }: Props) {
       return;
     }
 
-    setTimeout(pruneAndGetShortestTime, shortestTimeTillEnd + 10);
+    const timeout = setTimeout(pruneAndGetShortestTime, shortestTimeTillEnd + 10);
+    return () => {
+      clearTimeout(timeout);
+    };
   }, [orders, pruneAndGetShortestTime]);
 
   return <OrderList orders={orders} />;
