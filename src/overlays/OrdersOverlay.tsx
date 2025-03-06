@@ -24,12 +24,14 @@ export default function OrdersOverlay({ socket }: Props) {
         console.error(err);
       });
 
-    socket.on('orders', (newOrderSet) => {
-      setOrders((newOrderSet as ShowOrdersEvent[])[0].orders);
-    });
+    const newOrdersCallback = (newOrderSet: ShowOrdersEvent[]) => {
+      setOrders(newOrderSet[0].orders);
+    };
+
+    socket.on('orders', newOrdersCallback);
 
     return () => {
-      socket.removeAllListeners();
+      socket.off('orders', newOrdersCallback);
     };
   }, [socket]);
 
