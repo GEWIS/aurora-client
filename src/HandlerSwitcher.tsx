@@ -45,7 +45,7 @@ export default function HandlerSwitcher({ socket }: Props) {
     case Handlers.HUBBLE_POSTER:
       return <PosterHubbleView />;
     case Handlers.STATIC_POSTER:
-      return <StaticPosterView socket={screenSocket} />;
+      return <StaticPosterView socket={socket} />;
     case Handlers.STAGE_EFFECTS:
       return <StageEffectsView socket={socket} />;
     case Handlers.TIME_TRAIL_RACE:
