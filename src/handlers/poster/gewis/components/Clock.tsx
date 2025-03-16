@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 
-export default function Clock() {
+interface Props {
+  color?: string;
+  shouldTick?: boolean;
+}
+
+export default function Clock({ color = undefined, shouldTick = undefined }: Props) {
   const [hours, setHours] = useState<number | undefined>();
   const [minutes, setMinutes] = useState<number | undefined>();
   const [tick, setTick] = useState(true);
@@ -14,6 +19,7 @@ export default function Clock() {
   };
 
   useEffect(() => {
+    setTime();
     const interval = setInterval(setTime, 1000);
 
     return () => {
@@ -22,9 +28,14 @@ export default function Clock() {
   }, []);
 
   return (
-    <div className="inline-flex flex-row flex-nowrap w-auto text-shadow" style={{ fontFamily: '"Lato", monospace' }}>
+    <div
+      className="inline-flex flex-row flex-nowrap w-auto text-shadow"
+      style={{ fontFamily: '"Lato", monospace', color }}
+    >
       <div>{hours?.toString().padStart(2, '0') ?? '--'}</div>
-      <div className="w-3 text-center">{tick ? ':' : ''}</div>
+      <div className="text-center" style={{ width: '0.25em' }}>
+        {tick || !shouldTick ? ':' : ''}
+      </div>
       <div>{minutes?.toString().padStart(2, '0') ?? '--'}</div>
     </div>
   );

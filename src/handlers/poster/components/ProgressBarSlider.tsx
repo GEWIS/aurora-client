@@ -27,6 +27,7 @@ export default function ProgressBarSlider({ seconds, posterIndex, color }: Props
   return (
     <div
       className={`h-full w-full rounded ${hiding ? 'transition-opacity opacity-0' : 'transition-transform opacity-100'}`}
+      id="progress-bar-slider-inner"
       style={{
         backgroundColor: color,
         transform: hiding ? 'translateX(-100%)' : 'translateX(0)',

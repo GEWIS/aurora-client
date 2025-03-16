@@ -1,8 +1,15 @@
 import './gewis/components/index.scss';
 import { ReactNode, useEffect, useState } from 'react';
 import { RequestResult } from '@hey-api/client-fetch';
-import { BasePosterResponse, GewisPosterResponse, Poster } from '../../api';
+import {
+  BasePosterResponse,
+  getPosterCarouselSettings,
+  GewisPosterResponse,
+  Poster,
+  PosterScreenSettingsResponse,
+} from '../../api';
 import PosterCarousel from './components/Carousel';
+import GewisProgressBar from './gewis/components/GewisProgressBar.tsx';
 
 export interface OverlayProps {
   poster?: Poster;
@@ -20,7 +27,8 @@ interface Props {
   getPosters: () => Promise<RequestResult<BasePosterResponse | GewisPosterResponse>>;
 }
 
-export default function PosterBaseView({ overlay, localPosterRenderer, getPosters }: Props) {
+export default function PosterBaseView({ localPosterRenderer, getPosters }: Props) {
+  const [settings, setSettings] = useState<PosterScreenSettingsResponse>();
   const [posters, setPosters] = useState<Poster[]>();
   const [borrelMode, setBorrelMode] = useState(false);
   const [posterIndex, setPosterIndex] = useState<number>();
@@ -71,6 +79,12 @@ export default function PosterBaseView({ overlay, localPosterRenderer, getPoster
   useEffect(() => {
     refreshPosters().catch((e) => console.error(e));
 
+    getPosterCarouselSettings().then((res) => {
+      if (res.response.ok && res.data) {
+        setSettings(res.data);
+      }
+    });
+
     return () => {
       if (posterTimeout) clearTimeout(posterTimeout);
     };
@@ -91,7 +105,9 @@ export default function PosterBaseView({ overlay, localPosterRenderer, getPoster
     <div
       className="h-screen w-screen bg-center bg-cover bg-no-repeat"
       style={{ backgroundImage: 'url("base/poster-background.png")' }}
+      id="poster"
     >
+      <link rel="stylesheet" href="/src/handlers/poster/poster.css" />
       <div className="overflow-hidden w-full h-full">
         <PosterCarousel
           posters={posters || []}
@@ -99,15 +115,20 @@ export default function PosterBaseView({ overlay, localPosterRenderer, getPoster
           setTitle={setTitle}
           localPosterRenderer={localPosterRenderer}
         />
-        {overlay({
-          poster: selectedPoster,
-          posterTitle: title,
-          seconds: posterTimeout !== undefined ? selectedPoster?.timeout : undefined,
-          posterIndex: posterIndex,
-          nextPoster: nextPoster,
-          pausePoster: pausePoster,
-          borrelMode: borrelMode,
-        })}
+        <GewisProgressBar
+          // poster={selectedPoster}
+          title={title}
+          seconds={posterTimeout !== undefined ? selectedPoster?.timeout : undefined}
+          posterIndex={posterIndex}
+          minimal={settings?.defaultMinimal}
+          nextPoster={nextPoster}
+          pausePoster={pausePoster}
+          borrelMode={borrelMode}
+          logo={settings?.progressBarLogo ? '/api/handler/screen/gewis-poster/settings/progress-bar-logo' : ''}
+          progressBarColor={selectedPoster?.color && settings?.defaultProgressBarColor}
+          clockColor={selectedPoster?.color}
+          clockTick={true}
+        />
       </div>
     </div>
   );
