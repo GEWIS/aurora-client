@@ -27,6 +27,9 @@ interface Props {
   getPosters: () => Promise<RequestResult<BasePosterResponse | GewisPosterResponse>>;
 }
 
+const URL_CUSTOM_STYLESHEET = '/api/handler/screen/gewis-poster/settings/custom-stylesheet';
+const URL_PROGRESS_BAR_LOGO = '/api/handler/screen/gewis-poster/settings/progress-bar-logo';
+
 export default function PosterBaseView({ localPosterRenderer, getPosters }: Props) {
   const [settings, setSettings] = useState<PosterScreenSettingsResponse>();
   const [posters, setPosters] = useState<Poster[]>();
@@ -108,6 +111,9 @@ export default function PosterBaseView({ localPosterRenderer, getPosters }: Prop
       id="poster"
     >
       <link rel="stylesheet" href="/src/handlers/poster/poster.css" />
+      {/* Custom stylesheet should be imported AFTER the base stylesheet,
+      because the precedence is that the last CSS definition will be used */}
+      {settings?.stylesheet && <link rel="stylesheet" href={URL_CUSTOM_STYLESHEET} />}
       <div className="overflow-hidden w-full h-full">
         <PosterCarousel
           posters={posters || []}
@@ -124,10 +130,10 @@ export default function PosterBaseView({ localPosterRenderer, getPosters }: Prop
           nextPoster={nextPoster}
           pausePoster={pausePoster}
           borrelMode={borrelMode}
-          logo={settings?.progressBarLogo ? '/api/handler/screen/gewis-poster/settings/progress-bar-logo' : ''}
-          progressBarColor={selectedPoster?.color && settings?.defaultProgressBarColor}
+          logo={settings?.progressBarLogo ? URL_PROGRESS_BAR_LOGO : ''}
+          progressBarColor={selectedPoster?.color || settings?.defaultProgressBarColor}
           clockColor={selectedPoster?.color}
-          clockTick={true}
+          clockTick={settings?.clockShouldTick}
         />
       </div>
     </div>
