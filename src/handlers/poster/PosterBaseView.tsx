@@ -3,6 +3,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import { RequestResult } from '@hey-api/client-fetch';
 import {
   BasePosterResponse,
+  getGewisPosters,
   getPosterCarouselSettings,
   GewisPosterResponse,
   Poster,
@@ -22,15 +23,17 @@ export interface OverlayProps {
 }
 
 interface Props {
-  overlay: (overlayProps: OverlayProps) => ReactNode;
+  overlay?: (overlayProps: OverlayProps) => ReactNode;
   localPosterRenderer?: (poster: Poster, visible: boolean, setTitle: (title: string) => void) => ReactNode;
-  getPosters: () => Promise<RequestResult<BasePosterResponse | GewisPosterResponse>>;
+  getPosters?: () => Promise<RequestResult<BasePosterResponse | GewisPosterResponse>>;
 }
 
 const URL_CUSTOM_STYLESHEET = '/api/handler/screen/gewis-poster/settings/custom-stylesheet';
 const URL_PROGRESS_BAR_LOGO = '/api/handler/screen/gewis-poster/settings/progress-bar-logo';
 
-export default function PosterBaseView({ localPosterRenderer, getPosters }: Props) {
+export default function PosterBaseView({ localPosterRenderer, getPosters: getPostersProp }: Props) {
+  const getPosters = getPostersProp ?? getGewisPosters;
+
   const [settings, setSettings] = useState<PosterScreenSettingsResponse>();
   const [posters, setPosters] = useState<Poster[]>();
   const [borrelMode, setBorrelMode] = useState(false);

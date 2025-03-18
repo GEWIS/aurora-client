@@ -8,10 +8,10 @@ import { default as SpotifyView } from './handlers/spotify';
 import { default as DefaultView } from './handlers/default';
 import StageEffectsView from './handlers/stage-effects';
 import TimeTrailRaceView from './handlers/time-trail-race';
-import PosterGewisView from './handlers/poster/gewis';
 import PosterHubbleView from './handlers/poster/hubble';
 import RoomResponsibleLegacyView from './handlers/room-responsible-legacy';
 import StaticPosterView from './handlers/poster/StaticPosterView';
+import PosterBaseView from './handlers/poster/PosterBaseView.tsx';
 
 export enum Handlers {
   SPOTIFY = 'CurrentlyPlayingTrackHandler',
@@ -41,7 +41,7 @@ export default function HandlerSwitcher({ socket }: Props) {
     case Handlers.SPOTIFY:
       return <SpotifyView socket={socket} />;
     case Handlers.GEWIS_POSTER:
-      return <PosterGewisView />;
+      return <PosterBaseView />;
     case Handlers.HUBBLE_POSTER:
       return <PosterHubbleView />;
     case Handlers.STATIC_POSTER:
