@@ -11,7 +11,7 @@ import TimeTrailRaceView from './handlers/time-trail-race';
 import PosterHubbleView from './handlers/poster/hubble';
 import RoomResponsibleLegacyView from './handlers/room-responsible-legacy';
 import StaticPosterView from './handlers/poster/StaticPosterView';
-import PosterBaseView from './handlers/poster/PosterBaseView.tsx';
+import CarouselPosterView from './handlers/poster/CarouselPosterView.tsx';
 
 export enum Handlers {
   SPOTIFY = 'CurrentlyPlayingTrackHandler',
@@ -41,7 +41,7 @@ export default function HandlerSwitcher({ socket }: Props) {
     case Handlers.SPOTIFY:
       return <SpotifyView socket={socket} />;
     case Handlers.GEWIS_POSTER:
-      return <PosterBaseView />;
+      return <CarouselPosterView />;
     case Handlers.HUBBLE_POSTER:
       return <PosterHubbleView />;
     case Handlers.STATIC_POSTER:

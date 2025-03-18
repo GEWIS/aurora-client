@@ -1,5 +1,5 @@
-import ProgressBarSlider from '../../components/ProgressBarSlider';
-import Clock from './Clock';
+import ProgressBarSlider from './ProgressBarSlider.tsx';
+import Clock from './Clock.tsx';
 
 interface Props {
   title?: string;
@@ -16,7 +16,7 @@ interface Props {
   clockTick?: boolean;
 }
 
-export default function GewisProgressBar({
+export default function ProgressBar({
   title,
   seconds,
   posterIndex,

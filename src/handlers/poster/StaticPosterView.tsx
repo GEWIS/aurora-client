@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 import { getStaticPosterHandlerState, StaticPosterHandlerState } from '../../api';
 import BackgroundStarryNight from '../../components/backgrounds/StarryNight';
 import { LogoCentered } from '../../components/aurora-logos/LogoCentered.tsx';
-import ImagePoster from './gewis/components/types/ImagePoster';
-import VideoPoster from './gewis/components/types/VideoPoster';
-import ExternalPoster from './gewis/components/types/ExternalPoster';
-import GewisProgressBar from './gewis/components/GewisProgressBar';
+import ImagePoster from './types/ImagePoster';
+import VideoPoster from './types/VideoPoster';
+import ExternalPoster from './types/ExternalPoster';
+import ProgressBar from './components/ProgressBar.tsx';
 
 interface Props {
   socket: Socket;
@@ -75,7 +75,7 @@ export default function StaticPosterView({ socket }: Props) {
   return (
     <div className="relative w-screen h-screen">
       <div className="overflow-hidden absolute w-full h-full">{renderPoster()}</div>
-      {clock && <GewisProgressBar />}
+      {clock && <ProgressBar />}
     </div>
   );
 }

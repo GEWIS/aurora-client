@@ -1,4 +1,4 @@
-import './gewis/components/index.scss';
+import './components/index.scss';
 import { ReactNode, useEffect, useState } from 'react';
 import { RequestResult } from '@hey-api/client-fetch';
 import {
@@ -10,7 +10,7 @@ import {
   PosterScreenSettingsResponse,
 } from '../../api';
 import PosterCarousel from './components/Carousel';
-import GewisProgressBar from './gewis/components/GewisProgressBar.tsx';
+import ProgressBar from './components/ProgressBar.tsx';
 
 export interface OverlayProps {
   poster?: Poster;
@@ -31,7 +31,7 @@ interface Props {
 const URL_CUSTOM_STYLESHEET = '/api/handler/screen/gewis-poster/settings/custom-stylesheet';
 const URL_PROGRESS_BAR_LOGO = '/api/handler/screen/gewis-poster/settings/progress-bar-logo';
 
-export default function PosterBaseView({ localPosterRenderer, getPosters: getPostersProp }: Props) {
+export default function CarouselPosterView({ localPosterRenderer, getPosters: getPostersProp }: Props) {
   const getPosters = getPostersProp ?? getGewisPosters;
 
   const [settings, setSettings] = useState<PosterScreenSettingsResponse>();
@@ -124,7 +124,7 @@ export default function PosterBaseView({ localPosterRenderer, getPosters: getPos
           setTitle={setTitle}
           localPosterRenderer={localPosterRenderer}
         />
-        <GewisProgressBar
+        <ProgressBar
           // poster={selectedPoster}
           title={title}
           seconds={posterTimeout !== undefined ? selectedPoster?.timeout : undefined}

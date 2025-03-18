@@ -1,15 +1,15 @@
 import { ReactNode, useEffect, useMemo } from 'react';
 import { MediaPoster, PhotoPoster as ClientPhotoPoster, Poster, PosterType_PHOTO } from '../../../api';
-import LogoPoster from '../gewis/components/types/LogoPoster';
-import ImagePoster from '../gewis/components/types/ImagePoster';
-import ExternalPoster from '../gewis/components/types/ExternalPoster';
-import VideoPoster from '../gewis/components/types/VideoPoster';
-import PhotoPoster from '../gewis/components/types/PhotoPoster.tsx';
-import BorrelLogoPoster from '../gewis/components/types/BorrelLogoPoster.tsx';
-import BorrelWallOfShamePoster from '../gewis/components/types/BorrelWallOfShame.tsx';
-import BorrelPriceListPoster from '../gewis/components/types/BorrelPriceListPoster.tsx';
-import TrainPoster from '../gewis/components/types/TrainPoster.tsx';
-import OlympicsPoster from '../gewis/components/types/OlympicsPoster.tsx';
+import LogoPoster from '../types/LogoPoster';
+import ImagePoster from '../types/ImagePoster';
+import ExternalPoster from '../types/ExternalPoster';
+import VideoPoster from '../types/VideoPoster';
+import PhotoPoster from '../types/PhotoPoster.tsx';
+import BorrelLogoPoster from '../types/BorrelLogoPoster.tsx';
+import BorrelWallOfShamePoster from '../types/BorrelWallOfShame.tsx';
+import BorrelPriceListPoster from '../types/BorrelPriceListPoster.tsx';
+import TrainPoster from '../types/TrainPoster.tsx';
+import OlympicsPoster from '../types/OlympicsPoster.tsx';
 
 interface Props {
   posters: Poster[];
