@@ -61,9 +61,20 @@ export default function StaticPosterView({ socket }: Props) {
   }, [socket]);
 
   const renderDefaultScreen = () => {
+    let color: string;
+    if (
+      settings &&
+      settings.defaultProgressBarColor &&
+      settings.defaultProgressBarColor !== '#ffffff' &&
+      settings.defaultProgressBarColor !== '#fff'
+    ) {
+      color = settings.defaultProgressBarColor;
+    } else {
+      color = 'orange';
+    }
     return (
       <div className="absolute top-0 w-full h-full">
-        <BackgroundStarryNight backgroundColor="red">
+        <BackgroundStarryNight backgroundColor={color}>
           <div className="w-full h-full flex justify-center items-center">
             <LogoCentered size="5rem" />
           </div>
