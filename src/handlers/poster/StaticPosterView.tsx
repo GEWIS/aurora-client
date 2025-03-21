@@ -1,18 +1,25 @@
 import { Socket } from 'socket.io-client';
 import { useEffect, useState } from 'react';
-import { getStaticPosterHandlerState, StaticPosterHandlerState } from '../../api';
+import {
+  getPosterSettings,
+  getStaticPosterHandlerState,
+  PosterScreenSettingsResponse,
+  StaticPosterHandlerState,
+} from '../../api';
 import BackgroundStarryNight from '../../components/backgrounds/StarryNight';
 import { LogoCentered } from '../../components/aurora-logos/LogoCentered.tsx';
 import ImagePoster from './types/ImagePoster';
 import VideoPoster from './types/VideoPoster';
 import ExternalPoster from './types/ExternalPoster';
 import ProgressBar from './components/ProgressBar.tsx';
+import { URL_CUSTOM_STYLESHEET, URL_PROGRESS_BAR_LOGO } from './constants.ts';
 
 interface Props {
   socket: Socket;
 }
 
 export default function StaticPosterView({ socket }: Props) {
+  const [settings, setSettings] = useState<PosterScreenSettingsResponse | undefined>();
   const [url, setUrl] = useState('');
   const [clock, setClock] = useState(false);
 
@@ -28,6 +35,14 @@ export default function StaticPosterView({ socket }: Props) {
   };
 
   useEffect(() => {
+    getPosterSettings()
+      .then((res) => {
+        if (res.response.ok && res.data) {
+          setSettings(res.data);
+        }
+      })
+      .catch((e) => console.error(e));
+
     getStaticPosterHandlerState()
       .then((res) => {
         if (res.response.ok && res.data) {
@@ -73,9 +88,19 @@ export default function StaticPosterView({ socket }: Props) {
   };
 
   return (
-    <div className="relative w-screen h-screen">
+    <div className="relative w-screen h-screen" id="poster">
+      <link rel="stylesheet" href="/src/handlers/poster/poster.css" />
+      {/* Custom stylesheet should be imported AFTER the base stylesheet,
+      because the precedence is that the last CSS definition will be used */}
+      {settings?.stylesheet && <link rel="stylesheet" href={URL_CUSTOM_STYLESHEET} />}
       <div className="overflow-hidden absolute w-full h-full">{renderPoster()}</div>
-      {clock && <ProgressBar />}
+      {clock && (
+        <ProgressBar
+          logo={settings?.progressBarLogo ? URL_PROGRESS_BAR_LOGO : ''}
+          clockTick={settings?.clockShouldTick}
+          minimal={settings?.defaultMinimal}
+        />
+      )}
     </div>
   );
 }

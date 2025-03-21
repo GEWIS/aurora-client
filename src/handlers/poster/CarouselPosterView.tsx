@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { getPosters, getPosterSettings, Poster, PosterScreenSettingsResponse } from '../../api';
 import PosterCarousel from './components/Carousel';
 import ProgressBar from './components/ProgressBar.tsx';
+import { URL_CUSTOM_STYLESHEET, URL_PROGRESS_BAR_LOGO } from './constants.ts';
 
 export interface OverlayProps {
   poster?: Poster;
@@ -13,9 +14,6 @@ export interface OverlayProps {
   pausePoster: () => void;
   borrelMode?: boolean;
 }
-
-const URL_CUSTOM_STYLESHEET = '/api/handler/screen/gewis-poster/settings/custom-stylesheet';
-const URL_PROGRESS_BAR_LOGO = '/api/handler/screen/gewis-poster/settings/progress-bar-logo';
 
 export default function CarouselPosterView() {
   const [settings, setSettings] = useState<PosterScreenSettingsResponse | undefined>();
