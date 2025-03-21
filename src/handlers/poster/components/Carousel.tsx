@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { MediaPoster, PhotoPoster as ClientPhotoPoster, Poster, PosterType_PHOTO } from '../../../api';
 import LogoPoster from '../types/LogoPoster';
 import ImagePoster from '../types/ImagePoster';
@@ -15,10 +15,9 @@ interface Props {
   posters: Poster[];
   currentPoster: number;
   setTitle: (title: string) => void;
-  localPosterRenderer?: (poster: Poster, visible: boolean, setTitle: (title: string) => void) => ReactNode;
 }
 
-export default function PosterCarousel({ posters, currentPoster, setTitle, localPosterRenderer }: Props) {
+export default function PosterCarousel({ posters, currentPoster, setTitle }: Props) {
   const previousPoster = useMemo(() => (currentPoster - 1) % posters.length, [currentPoster, posters.length]);
   const nextPoster = useMemo(() => (currentPoster + 1) % posters.length, [currentPoster, posters.length]);
 
@@ -51,10 +50,7 @@ export default function PosterCarousel({ posters, currentPoster, setTitle, local
       case 'olympics':
         return <OlympicsPoster key={poster.name} visible={visible} />;
       default:
-        if (localPosterRenderer == undefined) {
-          return <div>{poster.type}</div>;
-        }
-        return localPosterRenderer(poster, visible, setTitle);
+        return <div>{poster.type}</div>;
     }
   };
 

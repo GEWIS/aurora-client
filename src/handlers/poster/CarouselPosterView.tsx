@@ -1,14 +1,6 @@
 import './components/index.scss';
-import { ReactNode, useEffect, useState } from 'react';
-import { RequestResult } from '@hey-api/client-fetch';
-import {
-  BasePosterResponse,
-  getGewisPosters,
-  getPosterCarouselSettings,
-  GewisPosterResponse,
-  Poster,
-  PosterScreenSettingsResponse,
-} from '../../api';
+import { useEffect, useState } from 'react';
+import { getPosters, getPosterSettings, Poster, PosterScreenSettingsResponse } from '../../api';
 import PosterCarousel from './components/Carousel';
 import ProgressBar from './components/ProgressBar.tsx';
 
@@ -22,19 +14,11 @@ export interface OverlayProps {
   borrelMode?: boolean;
 }
 
-interface Props {
-  overlay?: (overlayProps: OverlayProps) => ReactNode;
-  localPosterRenderer?: (poster: Poster, visible: boolean, setTitle: (title: string) => void) => ReactNode;
-  getPosters?: () => Promise<RequestResult<BasePosterResponse | GewisPosterResponse>>;
-}
-
 const URL_CUSTOM_STYLESHEET = '/api/handler/screen/gewis-poster/settings/custom-stylesheet';
 const URL_PROGRESS_BAR_LOGO = '/api/handler/screen/gewis-poster/settings/progress-bar-logo';
 
-export default function CarouselPosterView({ localPosterRenderer, getPosters: getPostersProp }: Props) {
-  const getPosters = getPostersProp ?? getGewisPosters;
-
-  const [settings, setSettings] = useState<PosterScreenSettingsResponse>();
+export default function CarouselPosterView() {
+  const [settings, setSettings] = useState<PosterScreenSettingsResponse | undefined>();
   const [posters, setPosters] = useState<Poster[]>();
   const [borrelMode, setBorrelMode] = useState(false);
   const [posterIndex, setPosterIndex] = useState<number>();
@@ -47,9 +31,10 @@ export default function CarouselPosterView({ localPosterRenderer, getPosters: ge
     setLoading(true);
     // TODO what to do if poster cannot be fetched?
     const newPosters = await getPosters();
-    setPosters(newPosters.data!.posters);
-    if ((newPosters.data! as GewisPosterResponse).borrelMode)
-      setBorrelMode((newPosters.data! as GewisPosterResponse).borrelMode);
+    if (newPosters.response.ok && newPosters.data) {
+      setPosters(newPosters.data.posters);
+      setBorrelMode(newPosters.data.borrelMode);
+    }
     setLoading(false);
   };
 
@@ -83,13 +68,13 @@ export default function CarouselPosterView({ localPosterRenderer, getPosters: ge
   }, [posterIndex]);
 
   useEffect(() => {
-    refreshPosters().catch((e) => console.error(e));
-
-    getPosterCarouselSettings().then((res) => {
+    getPosterSettings().then((res) => {
       if (res.response.ok && res.data) {
         setSettings(res.data);
       }
     });
+
+    refreshPosters().catch((e) => console.error(e));
 
     return () => {
       if (posterTimeout) clearTimeout(posterTimeout);
@@ -118,12 +103,7 @@ export default function CarouselPosterView({ localPosterRenderer, getPosters: ge
       because the precedence is that the last CSS definition will be used */}
       {settings?.stylesheet && <link rel="stylesheet" href={URL_CUSTOM_STYLESHEET} />}
       <div className="overflow-hidden w-full h-full">
-        <PosterCarousel
-          posters={posters || []}
-          currentPoster={!posterIndex ? 0 : posterIndex}
-          setTitle={setTitle}
-          localPosterRenderer={localPosterRenderer}
-        />
+        <PosterCarousel posters={posters || []} currentPoster={!posterIndex ? 0 : posterIndex} setTitle={setTitle} />
         <ProgressBar
           // poster={selectedPoster}
           title={title}
