@@ -11,11 +11,11 @@ import {
   RaceStartedEvent,
   ScoreboardItem,
   TimeTrailRaceState,
-  TimeTrailRaceState_FINISHED,
-  TimeTrailRaceState_PLAYER_READY,
-  TimeTrailRaceState_PLAYER_REGISTERED,
-  TimeTrailRaceState_SCOREBOARD,
-  TimeTrailRaceState_STARTED,
+  TimeTrailRaceStateFinished,
+  TimeTrailRaceStatePlayerReady,
+  TimeTrailRaceStatePlayerRegistered,
+  TimeTrailRaceStateScoreboard,
+  TimeTrailRaceStateStarted,
 } from '../../api';
 import StopWatch from './components/StopWatch';
 import NextPlayer from './components/NextPlayer';
@@ -32,11 +32,11 @@ type RaceInitializedEvent = RaceBaseEvent & {
 export default function TimeTrailRaceView({ socket }: Props) {
   const [state, setState] = useState<
     | TimeTrailRaceState
-    | TimeTrailRaceState_PLAYER_REGISTERED
-    | TimeTrailRaceState_PLAYER_READY
-    | TimeTrailRaceState_STARTED
-    | TimeTrailRaceState_FINISHED
-    | TimeTrailRaceState_SCOREBOARD
+    | TimeTrailRaceStatePlayerRegistered
+    | TimeTrailRaceStatePlayerReady
+    | TimeTrailRaceStateStarted
+    | TimeTrailRaceStateFinished
+    | TimeTrailRaceStateScoreboard
     | undefined
   >();
   const [sessionName, setSessionName] = useState<string>('');

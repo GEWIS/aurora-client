@@ -2,7 +2,7 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import AuthContextProvider from './contexts/AuthContext';
 import ErrorBoundary from './ErrorBoundary';
-import { client } from './api';
+import { client } from './api/client.gen.ts';
 import ClientView from './ClientView';
 export default function App() {
   client.setConfig({

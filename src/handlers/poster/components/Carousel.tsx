@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import { MediaPoster, PhotoPoster as ClientPhotoPoster, Poster, PosterType_PHOTO } from '../../../api';
+import { MediaPoster, PhotoPoster as ClientPhotoPoster, Poster, PosterTypePhoto } from '../../../api';
 import LogoPoster from '../types/LogoPoster';
 import ImagePoster from '../types/ImagePoster';
 import ExternalPoster from '../types/ExternalPoster';
@@ -56,7 +56,7 @@ export default function PosterCarousel({ posters, currentPoster, setTitle }: Pro
 
   useEffect(() => {
     const poster = posters[currentPoster];
-    if (poster && poster.type !== PosterType_PHOTO.PHOTO) {
+    if (poster && poster.type !== PosterTypePhoto.PHOTO) {
       setTitle(poster.label);
     }
   }, [posters, currentPoster, setTitle]);

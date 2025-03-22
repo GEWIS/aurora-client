@@ -1,13 +1,12 @@
 import { Gif } from '@giphy/react-components';
-import { GiphyFetch } from '@giphy/js-fetch-api';
+import { GifResult, GiphyFetch } from '@giphy/js-fetch-api';
 import { useEffect, useState } from 'react';
-import IGif from '@giphy/js-types/dist/gif';
 
 export { default as LoadingView } from './LoadingView';
 export { default as ReloadCountdown } from './ReloadCountdown';
 
 export default function View() {
-  const [gif, setGif] = useState<IGif | null>(null);
+  const [gif, setGif] = useState<GifResult['data'] | null>(null);
 
   const getRandomInt = (max: number) => {
     return Math.floor(Math.random() * max);
