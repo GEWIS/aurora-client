@@ -1,13 +1,8 @@
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMedal, faPlus, faRankingStar } from '@fortawesome/free-solid-svg-icons';
-import {
-  CountryMedalResponse,
-  getDutchOlympicMedals,
-  getOlympicsMedalTable,
-  MedalTableRecord,
-} from '../../../../../api';
-import VerticalScroll from '../../../../../components/VerticalScroll';
+import { CountryMedalResponse, getDutchOlympicMedals, getOlympicsMedalTable, MedalTableRecord } from '../../../api';
+import VerticalScroll from '../../../components/VerticalScroll.tsx';
 
 interface Props {
   visible: boolean;

@@ -1,8 +1,9 @@
-import './gewis/components/index.scss';
-import { ReactNode, useEffect, useState } from 'react';
-import { RequestResult } from '@hey-api/client-fetch';
-import { BasePosterResponse, GewisPosterResponse, Poster } from '../../api';
+import './components/index.scss';
+import { useEffect, useState } from 'react';
+import { getPosters, getPosterSettings, Poster, PosterScreenSettingsResponse } from '../../api';
 import PosterCarousel from './components/Carousel';
+import ProgressBar from './components/ProgressBar.tsx';
+import { URL_CUSTOM_STYLESHEET, URL_PROGRESS_BAR_LOGO } from './constants.ts';
 
 export interface OverlayProps {
   poster?: Poster;
@@ -14,13 +15,8 @@ export interface OverlayProps {
   borrelMode?: boolean;
 }
 
-interface Props {
-  overlay: (overlayProps: OverlayProps) => ReactNode;
-  localPosterRenderer?: (poster: Poster, visible: boolean, setTitle: (title: string) => void) => ReactNode;
-  getPosters: () => Promise<RequestResult<BasePosterResponse | GewisPosterResponse>>;
-}
-
-export default function PosterBaseView({ overlay, localPosterRenderer, getPosters }: Props) {
+export default function CarouselPosterView() {
+  const [settings, setSettings] = useState<PosterScreenSettingsResponse | undefined>();
   const [posters, setPosters] = useState<Poster[]>();
   const [borrelMode, setBorrelMode] = useState(false);
   const [posterIndex, setPosterIndex] = useState<number>();
@@ -33,9 +29,10 @@ export default function PosterBaseView({ overlay, localPosterRenderer, getPoster
     setLoading(true);
     // TODO what to do if poster cannot be fetched?
     const newPosters = await getPosters();
-    setPosters(newPosters.data!.posters);
-    if ((newPosters.data! as GewisPosterResponse).borrelMode)
-      setBorrelMode((newPosters.data! as GewisPosterResponse).borrelMode);
+    if (newPosters.response.ok && newPosters.data) {
+      setPosters(newPosters.data.posters);
+      setBorrelMode(newPosters.data.borrelMode);
+    }
     setLoading(false);
   };
 
@@ -69,6 +66,14 @@ export default function PosterBaseView({ overlay, localPosterRenderer, getPoster
   }, [posterIndex]);
 
   useEffect(() => {
+    getPosterSettings()
+      .then((res) => {
+        if (res.response.ok && res.data) {
+          setSettings(res.data);
+        }
+      })
+      .catch((e) => console.error(e));
+
     refreshPosters().catch((e) => console.error(e));
 
     return () => {
@@ -91,23 +96,28 @@ export default function PosterBaseView({ overlay, localPosterRenderer, getPoster
     <div
       className="h-screen w-screen bg-center bg-cover bg-no-repeat"
       style={{ backgroundImage: 'url("base/poster-background.png")' }}
+      id="poster"
     >
+      <link rel="stylesheet" href="/src/handlers/poster/poster.css" />
+      {/* Custom stylesheet should be imported AFTER the base stylesheet,
+      because the precedence is that the last CSS definition will be used */}
+      {settings?.stylesheet && <link rel="stylesheet" href={URL_CUSTOM_STYLESHEET} />}
       <div className="overflow-hidden w-full h-full">
-        <PosterCarousel
-          posters={posters || []}
-          currentPoster={!posterIndex ? 0 : posterIndex}
-          setTitle={setTitle}
-          localPosterRenderer={localPosterRenderer}
+        <PosterCarousel posters={posters || []} currentPoster={!posterIndex ? 0 : posterIndex} setTitle={setTitle} />
+        <ProgressBar
+          // poster={selectedPoster}
+          title={title}
+          seconds={posterTimeout !== undefined ? selectedPoster?.timeout : undefined}
+          posterIndex={posterIndex}
+          minimal={settings?.defaultMinimal}
+          nextPoster={nextPoster}
+          pausePoster={pausePoster}
+          borrelMode={borrelMode}
+          logo={settings?.progressBarLogo ? URL_PROGRESS_BAR_LOGO : ''}
+          progressBarColor={selectedPoster?.color || settings?.defaultProgressBarColor}
+          clockColor={selectedPoster?.color}
+          clockTick={settings?.clockShouldTick}
         />
-        {overlay({
-          poster: selectedPoster,
-          posterTitle: title,
-          seconds: posterTimeout !== undefined ? selectedPoster?.timeout : undefined,
-          posterIndex: posterIndex,
-          nextPoster: nextPoster,
-          pausePoster: pausePoster,
-          borrelMode: borrelMode,
-        })}
       </div>
     </div>
   );

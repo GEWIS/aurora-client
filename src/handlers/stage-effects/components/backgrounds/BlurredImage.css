@@ -12,8 +12,8 @@
   opacity: 0.5;
 
   /* Add the blur effect */
-  filter: blur(20px);
-  -webkit-filter: blur(20px);
+  filter: blur(2vh);
+  -webkit-filter: blur(2vh);
 
   /* Full height */
   height: 120%;

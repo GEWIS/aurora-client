@@ -1,18 +1,23 @@
-import { ReactNode, useEffect, useMemo } from 'react';
-import { MediaPoster, Poster, PosterType_PHOTO } from '../../../api';
-import LogoPoster from '../gewis/components/types/LogoPoster';
-import ImagePoster from '../gewis/components/types/ImagePoster';
-import ExternalPoster from '../gewis/components/types/ExternalPoster';
-import VideoPoster from '../gewis/components/types/VideoPoster';
+import { useEffect, useMemo } from 'react';
+import { MediaPoster, PhotoPoster as ClientPhotoPoster, Poster, PosterType_PHOTO } from '../../../api';
+import LogoPoster from '../types/LogoPoster';
+import ImagePoster from '../types/ImagePoster';
+import ExternalPoster from '../types/ExternalPoster';
+import VideoPoster from '../types/VideoPoster';
+import PhotoPoster from '../types/PhotoPoster.tsx';
+import BorrelLogoPoster from '../types/BorrelLogoPoster.tsx';
+import BorrelWallOfShamePoster from '../types/BorrelWallOfShame.tsx';
+import BorrelPriceListPoster from '../types/BorrelPriceListPoster.tsx';
+import TrainPoster from '../types/TrainPoster.tsx';
+import OlympicsPoster from '../types/OlympicsPoster.tsx';
 
 interface Props {
   posters: Poster[];
   currentPoster: number;
   setTitle: (title: string) => void;
-  localPosterRenderer?: (poster: Poster, visible: boolean, setTitle: (title: string) => void) => ReactNode;
 }
 
-export default function PosterCarousel({ posters, currentPoster, setTitle, localPosterRenderer }: Props) {
+export default function PosterCarousel({ posters, currentPoster, setTitle }: Props) {
   const previousPoster = useMemo(() => (currentPoster - 1) % posters.length, [currentPoster, posters.length]);
   const nextPoster = useMemo(() => (currentPoster + 1) % posters.length, [currentPoster, posters.length]);
 
@@ -30,11 +35,22 @@ export default function PosterCarousel({ posters, currentPoster, setTitle, local
         return <ExternalPoster key={poster.name} url={(poster as MediaPoster).source[0]} visible={visible} />;
       case 'video':
         return <VideoPoster key={poster.name} source={(poster as MediaPoster).source} visible={visible} />;
+      case 'photo':
+        return (
+          <PhotoPoster key={poster.name} poster={poster as ClientPhotoPoster} visible={visible} setTitle={setTitle} />
+        );
+      case 'borrel-logo':
+        return <BorrelLogoPoster key={poster.name} />;
+      case 'borrel-wall-of-shame':
+        return <BorrelWallOfShamePoster key={poster.name} visible={visible} />;
+      case 'borrel-price-list':
+        return <BorrelPriceListPoster key={poster.name} visible={visible} />;
+      case 'train':
+        return <TrainPoster key={poster.name} visible={visible} timeout={poster.timeout} />;
+      case 'olympics':
+        return <OlympicsPoster key={poster.name} visible={visible} />;
       default:
-        if (localPosterRenderer == undefined) {
-          return <div>{poster.type}</div>;
-        }
-        return localPosterRenderer(poster, visible, setTitle);
+        return <div>{poster.type}</div>;
     }
   };
 

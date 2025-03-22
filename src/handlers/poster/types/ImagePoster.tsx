@@ -18,8 +18,8 @@ export default function ImagePoster({ source }: Props) {
   return (
     <div className="w-full h-full bg-black relative">
       <div
-        className="absolute w-full h-full blur-lg opacity-50 z-20 bg-no-repeat bg-cover bg-center"
-        style={{ backgroundImage: `url("${sourceUrl}")` }}
+        className="absolute w-full h-full opacity-50 z-20 bg-no-repeat bg-cover bg-center"
+        style={{ backgroundImage: `url("${sourceUrl}")`, filter: 'blur(1vh)' }}
       ></div>
       <div
         className="object-contain block relative z-30 h-full bg-no-repeat bg-contain bg-center"

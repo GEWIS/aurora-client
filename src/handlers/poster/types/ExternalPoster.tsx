@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import ImagePoster from './ImagePoster';
+import ImagePoster from './ImagePoster.tsx';
 
 interface Props {
   url: string;

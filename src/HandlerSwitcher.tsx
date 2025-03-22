@@ -8,16 +8,14 @@ import { default as SpotifyView } from './handlers/spotify';
 import { default as DefaultView } from './handlers/default';
 import StageEffectsView from './handlers/stage-effects';
 import TimeTrailRaceView from './handlers/time-trail-race';
-import PosterGewisView from './handlers/poster/gewis';
-import PosterHubbleView from './handlers/poster/hubble';
 import RoomResponsibleLegacyView from './handlers/room-responsible-legacy';
 import StaticPosterView from './handlers/poster/StaticPosterView';
+import CarouselPosterView from './handlers/poster/CarouselPosterView.tsx';
 
 export enum Handlers {
   SPOTIFY = 'CurrentlyPlayingTrackHandler',
   CENTURION = 'CenturionScreenHandler',
-  GEWIS_POSTER = 'GewisPosterScreenHandler',
-  HUBBLE_POSTER = 'HubblePosterScreenHandler',
+  CAROUSEL_POSTER = 'CarouselPosterHandler',
   STATIC_POSTER = 'StaticPosterHandler',
   STAGE_EFFECTS = 'StageEffectsHandler',
   TIME_TRAIL_RACE = 'TimeTrailRaceScreenHandler',
@@ -40,10 +38,8 @@ export default function HandlerSwitcher({ socket }: Props) {
       return <CenturionView socket={socket} />;
     case Handlers.SPOTIFY:
       return <SpotifyView socket={socket} />;
-    case Handlers.GEWIS_POSTER:
-      return <PosterGewisView />;
-    case Handlers.HUBBLE_POSTER:
-      return <PosterHubbleView />;
+    case Handlers.CAROUSEL_POSTER:
+      return <CarouselPosterView />;
     case Handlers.STATIC_POSTER:
       return <StaticPosterView socket={socket} />;
     case Handlers.STAGE_EFFECTS:
