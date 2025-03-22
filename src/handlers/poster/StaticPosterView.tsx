@@ -28,11 +28,13 @@ export default function StaticPosterView({ socket }: Props) {
   };
 
   useEffect(() => {
-    getStaticPosterHandlerState().then((res) => {
-      if (res.response.ok && res.data) {
-        handlePosterChange(res.data);
-      }
-    });
+    getStaticPosterHandlerState()
+      .then((res) => {
+        if (res.response.ok && res.data) {
+          handlePosterChange(res.data);
+        }
+      })
+      .catch((e) => console.error(e));
 
     const handlePosterChangeEvent = (payload: StaticPosterHandlerState[]) => handlePosterChange(payload[0]);
 
