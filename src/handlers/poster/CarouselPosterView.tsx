@@ -66,11 +66,13 @@ export default function CarouselPosterView() {
   }, [posterIndex]);
 
   useEffect(() => {
-    getPosterSettings().then((res) => {
-      if (res.response.ok && res.data) {
-        setSettings(res.data);
-      }
-    });
+    getPosterSettings()
+      .then((res) => {
+        if (res.response.ok && res.data) {
+          setSettings(res.data);
+        }
+      })
+      .catch((e) => console.error(e));
 
     refreshPosters().catch((e) => console.error(e));
 
