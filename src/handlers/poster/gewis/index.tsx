@@ -1,5 +1,5 @@
 import { RequestResult } from '@hey-api/client-fetch';
-import PosterBaseView from '../';
+import PosterBaseView from '../PosterBaseView';
 import {
   PhotoPoster as ClientPhotoPoster,
   getGewisPosters,

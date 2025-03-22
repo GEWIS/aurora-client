@@ -11,12 +11,14 @@ import TimeTrailRaceView from './handlers/time-trail-race';
 import PosterGewisView from './handlers/poster/gewis';
 import PosterHubbleView from './handlers/poster/hubble';
 import RoomResponsibleLegacyView from './handlers/room-responsible-legacy';
+import StaticPosterView from './handlers/poster/StaticPosterView';
 
 export enum Handlers {
   SPOTIFY = 'CurrentlyPlayingTrackHandler',
   CENTURION = 'CenturionScreenHandler',
   GEWIS_POSTER = 'GewisPosterScreenHandler',
   HUBBLE_POSTER = 'HubblePosterScreenHandler',
+  STATIC_POSTER = 'StaticPosterHandler',
   STAGE_EFFECTS = 'StageEffectsHandler',
   TIME_TRAIL_RACE = 'TimeTrailRaceScreenHandler',
   ROOM_RESPONSIBLE_LEGACY = 'RoomResponsibleLegacyHandler',
@@ -42,6 +44,8 @@ export default function HandlerSwitcher({ socket }: Props) {
       return <PosterGewisView />;
     case Handlers.HUBBLE_POSTER:
       return <PosterHubbleView />;
+    case Handlers.STATIC_POSTER:
+      return <StaticPosterView socket={socket} />;
     case Handlers.STAGE_EFFECTS:
       return <StageEffectsView socket={socket} />;
     case Handlers.TIME_TRAIL_RACE:

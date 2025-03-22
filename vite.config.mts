@@ -6,9 +6,9 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        api: 'modern-compiler'
-      }
-    }
+        api: 'modern-compiler',
+      },
+    },
   },
   plugins: [react()],
   server: {
@@ -19,18 +19,23 @@ export default defineConfig({
         target: 'http://localhost:3000',
         changeOrigin: true,
         secure: false,
-        ws: true
+        ws: true,
       },
       '/socket.io': {
         target: 'ws://localhost:3000',
-        ws: true
+        ws: true,
       },
       '/static/posters': {
         target: 'http://localhost:3000',
         changeOrigin: true,
-        secure: false
-      }
-    }
+        secure: false,
+      },
+      '/static/local-posters': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
   build: {
     outDir: './dist',
@@ -40,10 +45,10 @@ export default defineConfig({
           if (id.includes('node_modules')) {
             return id.toString().split('node_modules/')[1].split('/')[0].toString();
           }
-        }
-      }
+        },
+      },
     },
-    chunkSizeWarningLimit: 750
+    chunkSizeWarningLimit: 750,
   },
-  publicDir: './public'
+  publicDir: './public',
 });
