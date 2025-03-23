@@ -7,6 +7,12 @@
 #poster #progress-bar {
 }
 
+/* Aurora Watermark shown on the first poster of the carousel. Hidden otherwise */
+#poster #progress-bar #watermark {
+  /*You probably want to set some custom size if you rescale everything
+  /*font-size: '2em';*/
+}
+
 /* The full-width box the slider is contained in */
 #poster #progress-bar #progress-bar-slider-outer {
   height: 6.25%;
