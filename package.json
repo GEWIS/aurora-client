@@ -36,7 +36,9 @@
     "prepare": "husky"
   },
   "devDependencies": {
-    "@gewis/eslint-config": "github:GEWIS/eslint-config#v2.2.3",
+    "@gewis/eslint-config-react": "^2.3.0",
+    "@gewis/eslint-config-typescript": "^2.3.0",
+    "@gewis/prettier-config": "^2.2.2",
     "@hey-api/openapi-ts": "^0.64.13",
     "@types/node": "^22.13.11",
     "@types/react": "^19.0.12",
@@ -52,8 +54,7 @@
     "prettier": "^3.5.3",
     "sass": "^1.86.0",
     "tailwindcss": "^4.0.15",
-    "typescript": "^5.8.2",
-    "typescript-eslint": "^8.27.0"
+    "typescript": "^5.8.2"
   },
   "engines": {
     "node": ">=22.0.0"

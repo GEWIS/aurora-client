@@ -1,8 +1,8 @@
-import prettier from '@gewis/eslint-config/prettier.mjs';
+import { prettierConfig } from '@gewis/prettier-config';
 
 /**
  * @type {import("prettier").Config}
  */
 export default {
-  ...prettier,
+  ...prettierConfig,
 };
