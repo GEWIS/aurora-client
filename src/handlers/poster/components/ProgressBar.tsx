@@ -1,5 +1,5 @@
-import ProgressBarSlider from './ProgressBarSlider.tsx';
-import Clock from './Clock.tsx';
+import ProgressBarSlider from './ProgressBarSlider';
+import Clock from './Clock';
 
 interface Props {
   title?: string;

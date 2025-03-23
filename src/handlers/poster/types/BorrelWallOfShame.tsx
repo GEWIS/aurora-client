@@ -1,7 +1,7 @@
 import { CSSProperties, useEffect, useState } from 'react';
 import { getSudoSosWallOfShame, SudoSosDebtorResponse } from '../../../api';
-import VerticalScroll from '../../../components/VerticalScroll.tsx';
-import { bacShadow, redShadow } from '../../../style/shadows.ts';
+import VerticalScroll from '../../../components/VerticalScroll';
+import { bacShadow, redShadow } from '../../../style/shadows';
 
 interface Props {
   visible: boolean;

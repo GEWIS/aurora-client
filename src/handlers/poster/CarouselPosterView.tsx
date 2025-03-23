@@ -2,8 +2,8 @@ import './components/index.scss';
 import { useEffect, useState } from 'react';
 import { getPosters, getPosterSettings, Poster, PosterScreenSettingsResponse } from '../../api';
 import PosterCarousel from './components/Carousel';
-import ProgressBar from './components/ProgressBar.tsx';
-import { URL_CUSTOM_STYLESHEET, URL_PROGRESS_BAR_LOGO } from './constants.ts';
+import ProgressBar from './components/ProgressBar';
+import { URL_CUSTOM_STYLESHEET, URL_PROGRESS_BAR_LOGO } from './constants';
 
 export interface OverlayProps {
   poster?: Poster;

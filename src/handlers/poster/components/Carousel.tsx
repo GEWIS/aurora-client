@@ -4,12 +4,12 @@ import LogoPoster from '../types/LogoPoster';
 import ImagePoster from '../types/ImagePoster';
 import ExternalPoster from '../types/ExternalPoster';
 import VideoPoster from '../types/VideoPoster';
-import PhotoPoster from '../types/PhotoPoster.tsx';
-import BorrelLogoPoster from '../types/BorrelLogoPoster.tsx';
-import BorrelWallOfShamePoster from '../types/BorrelWallOfShame.tsx';
-import BorrelPriceListPoster from '../types/BorrelPriceListPoster.tsx';
-import TrainPoster from '../types/TrainPoster.tsx';
-import OlympicsPoster from '../types/OlympicsPoster.tsx';
+import PhotoPoster from '../types/PhotoPoster';
+import BorrelLogoPoster from '../types/BorrelLogoPoster';
+import BorrelWallOfShamePoster from '../types/BorrelWallOfShame';
+import BorrelPriceListPoster from '../types/BorrelPriceListPoster';
+import TrainPoster from '../types/TrainPoster';
+import OlympicsPoster from '../types/OlympicsPoster';
 
 interface Props {
   posters: Poster[];
