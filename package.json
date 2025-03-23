@@ -10,7 +10,7 @@
     "@giphy/react-components": "^10.0.1",
     "@hey-api/client-fetch": "^0.8.3",
     "@tailwindcss/postcss": "^4.0.15",
-    "axios": "1.8.3",
+    "axios": "1.8.4",
     "clsx": "^2.1.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
