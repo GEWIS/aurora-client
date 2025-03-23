@@ -1,14 +1,14 @@
 import { CSSProperties, useEffect, useState } from 'react';
-import { getSudoSosWallOfShame, SudoSOSDebtorResponse } from '../../../api';
-import VerticalScroll from '../../../components/VerticalScroll.tsx';
-import { bacShadow, redShadow } from '../../../style/shadows.ts';
+import { getSudoSosWallOfShame, SudoSosDebtorResponse } from '../../../api';
+import VerticalScroll from '../../../components/VerticalScroll';
+import { bacShadow, redShadow } from '../../../style/shadows';
 
 interface Props {
   visible: boolean;
 }
 
 export default function BorrelWallOfShamePoster({ visible }: Props) {
-  const [debtors, setDebtors] = useState<SudoSOSDebtorResponse[]>([]);
+  const [debtors, setDebtors] = useState<SudoSosDebtorResponse[]>([]);
 
   // TODO what if data is not fetched?
   useEffect(() => {

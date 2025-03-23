@@ -1,6 +1,6 @@
 import { clsx } from 'clsx';
 import styles from '../centurion.module.css';
-import { LogoLine } from '../../../components/aurora-logos/LogoLine.tsx';
+import { LogoLine } from '../../../components/aurora-logos/LogoLine';
 
 interface Props {
   albumCover: string;

@@ -7,12 +7,12 @@ import {
   StaticPosterHandlerState,
 } from '../../api';
 import BackgroundStarryNight from '../../components/backgrounds/StarryNight';
-import { LogoCentered } from '../../components/aurora-logos/LogoCentered.tsx';
+import { LogoCentered } from '../../components/aurora-logos/LogoCentered';
 import ImagePoster from './types/ImagePoster';
 import VideoPoster from './types/VideoPoster';
 import ExternalPoster from './types/ExternalPoster';
-import ProgressBar from './components/ProgressBar.tsx';
-import { URL_CUSTOM_STYLESHEET, URL_PROGRESS_BAR_LOGO } from './constants.ts';
+import ProgressBar from './components/ProgressBar';
+import { URL_CUSTOM_STYLESHEET, URL_PROGRESS_BAR_LOGO } from './constants';
 
 interface Props {
   socket: Socket;

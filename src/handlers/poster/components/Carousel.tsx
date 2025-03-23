@@ -1,15 +1,15 @@
 import { useEffect, useMemo } from 'react';
-import { MediaPoster, PhotoPoster as ClientPhotoPoster, Poster, PosterType_PHOTO } from '../../../api';
+import { MediaPoster, PhotoPoster as ClientPhotoPoster, Poster, PosterTypePhoto } from '../../../api';
 import LogoPoster from '../types/LogoPoster';
 import ImagePoster from '../types/ImagePoster';
 import ExternalPoster from '../types/ExternalPoster';
 import VideoPoster from '../types/VideoPoster';
-import PhotoPoster from '../types/PhotoPoster.tsx';
-import BorrelLogoPoster from '../types/BorrelLogoPoster.tsx';
-import BorrelWallOfShamePoster from '../types/BorrelWallOfShame.tsx';
-import BorrelPriceListPoster from '../types/BorrelPriceListPoster.tsx';
-import TrainPoster from '../types/TrainPoster.tsx';
-import OlympicsPoster from '../types/OlympicsPoster.tsx';
+import PhotoPoster from '../types/PhotoPoster';
+import BorrelLogoPoster from '../types/BorrelLogoPoster';
+import BorrelWallOfShamePoster from '../types/BorrelWallOfShame';
+import BorrelPriceListPoster from '../types/BorrelPriceListPoster';
+import TrainPoster from '../types/TrainPoster';
+import OlympicsPoster from '../types/OlympicsPoster';
 
 interface Props {
   posters: Poster[];
@@ -56,7 +56,7 @@ export default function PosterCarousel({ posters, currentPoster, setTitle }: Pro
 
   useEffect(() => {
     const poster = posters[currentPoster];
-    if (poster && poster.type !== PosterType_PHOTO.PHOTO) {
+    if (poster && poster.type !== PosterTypePhoto.PHOTO) {
       setTitle(poster.label);
     }
   }, [posters, currentPoster, setTitle]);

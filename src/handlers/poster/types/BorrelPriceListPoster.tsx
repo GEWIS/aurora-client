@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { getSudoSosPriceList, ProductCategoryResponse, ProductResponse } from '../../../api';
-import VerticalScroll from '../../../components/VerticalScroll.tsx';
+import VerticalScroll from '../../../components/VerticalScroll';
 
 interface Props {
   visible: boolean;

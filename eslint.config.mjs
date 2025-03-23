@@ -1,5 +1,5 @@
-import eslint from '@gewis/eslint-config/eslint.common.mjs';
-import react from '@gewis/eslint-config/eslint.react.mjs';
-import prettier from '@gewis/eslint-config/eslint.prettier.mjs';
+import { eslintConfig as common } from '@gewis/eslint-config-typescript';
+import { eslintConfig as react } from '@gewis/eslint-config-react';
+import { eslintConfig as prettier } from '@gewis/prettier-config';
 
-export default [...eslint, ...react, ...prettier];
+export default [...common, ...react, prettier];

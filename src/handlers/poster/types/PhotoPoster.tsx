@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { PhotoPoster as IPhotoPoster, GEWISPhotoAlbumParams, getPhoto } from '../../../api';
-import ImagePoster from './ImagePoster.tsx';
+import { PhotoPoster as IPhotoPoster, GewisPhotoAlbumParams, getPhoto } from '../../../api';
+import ImagePoster from './ImagePoster';
 
 interface Props {
   poster: IPhotoPoster;
@@ -17,7 +17,7 @@ export default function PhotoPoster({ poster, visible, setTitle }: Props) {
   }, [label, setTitle, visible]);
 
   useEffect(() => {
-    const body: GEWISPhotoAlbumParams = {
+    const body: GewisPhotoAlbumParams = {
       albumIds: poster.albums,
     };
     // TODO what do display if photo is not fetched?
