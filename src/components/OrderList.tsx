@@ -38,7 +38,7 @@ export default function OrderList({ orders }: Props) {
           <AnimatePresence>
             {orders.map((order) => (
               <motion.li key={order.number} initial={animationInitial} animate={animationIn} exit={animationOut} layout>
-                <GlassCard className="text-center p-[1.5vh] min-w-[7vw]">{order.number}</GlassCard>
+                <GlassCard className="text-center p-[1.5vh] min-w-[2.3em]">{order.number}</GlassCard>
               </motion.li>
             ))}
           </AnimatePresence>
