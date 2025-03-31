@@ -9,7 +9,7 @@
     "@giphy/js-fetch-api": "^5.6.0",
     "@giphy/react-components": "^10.0.1",
     "@hey-api/client-fetch": "^0.8.3",
-    "@tailwindcss/postcss": "^4.0.15",
+    "@tailwindcss/postcss": "^4.0.17",
     "clsx": "^2.1.1",
     "framer-motion": "^12.5.0",
     "react": "^19.0.0",
@@ -20,7 +20,7 @@
     "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1",
     "styled-components": "^6.1.16",
-    "vite": "^6.2.2",
+    "vite": "^6.2.4",
     "vite-plugin-svgr": "^4.3.0",
     "vite-tsconfig-paths": "^5.1.4"
   },
