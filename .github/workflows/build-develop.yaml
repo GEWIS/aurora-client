@@ -3,10 +3,10 @@ name: Lint and build
 on:
   push:
     branches:
-    - develop
+      - develop
   pull_request:
     branches-ignore:
-    - main
+      - main
 
 jobs:
   generate-client-files:
@@ -21,7 +21,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22.x"
+          node-version: '22.x'
 
       - name: Install dependencies
         uses: borales/actions-yarn@v5
@@ -47,14 +47,13 @@ jobs:
           path: api
 
   build-and-lint:
-    needs:
-      generate-client-files
+    needs: generate-client-files
     uses: GEWIS/actions/.github/workflows/typescript-lint-and-build.yml@v0.0.2
     with:
-      node-version: "22.x"
-      package-manager: "yarn"
-      artifact-name: "api-client"
-      artifact-path: "src/api"
+      node-version: '22.x'
+      package-manager: 'yarn'
+      artifact-name: 'api-client'
+      artifact-path: 'src/api'
       lint: true
       format: true
       build: true
