@@ -9202,15 +9202,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:^9.1.7":
-  version: 9.1.7
-  resolution: "husky@npm:9.1.7"
-  bin:
-    husky: bin.js
-  checksum: 10c0/35bb110a71086c48906aa7cd3ed4913fb913823715359d65e32e0b964cb1e255593b0ae8014a5005c66a68e6fa66c38dcfa8056dbbdfb8b0187c0ffe7ee3a58f
-  languageName: node
-  linkType: hard
-
 "hyphenate-style-name@npm:^1.0.3":
   version: 1.1.0
   resolution: "hyphenate-style-name@npm:1.1.0"
@@ -11448,16 +11439,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"narrowcasting-client@workspace:.":
+"narrowcasting-client@workspace:packages/aurora-client":
   version: 0.0.0-use.local
-  resolution: "narrowcasting-client@workspace:."
+  resolution: "narrowcasting-client@workspace:packages/aurora-client"
   dependencies:
     "@fortawesome/fontawesome-svg-core": "npm:^6.7.2"
     "@fortawesome/free-solid-svg-icons": "npm:^6.7.2"
     "@fortawesome/react-fontawesome": "npm:^0.2.2"
-    "@gewis/eslint-config-react": "npm:^2.3.0"
-    "@gewis/eslint-config-typescript": "npm:^2.3.0"
-    "@gewis/prettier-config": "npm:^2.2.2"
     "@giphy/js-fetch-api": "npm:^5.6.0"
     "@giphy/react-components": "npm:^10.0.1"
     "@hey-api/client-fetch": "npm:^0.8.3"
@@ -11471,12 +11459,9 @@ __metadata:
     "@vitejs/plugin-react-swc": "npm:^3.8.1"
     autoprefixer: "npm:^10.4.21"
     clsx: "npm:^2.1.1"
-    eslint: "npm:^9.23.0"
     framer-motion: "npm:^12.5.0"
-    husky: "npm:^9.1.7"
     openapi-typescript-codegen: "npm:^0.29.0"
     postcss: "npm:^8.5.3"
-    prettier: "npm:^3.5.3"
     react: "npm:^19.0.0"
     react-dom: "npm:^19.0.0"
     react-helmet: "npm:^6.1.0"
@@ -14001,6 +13986,20 @@ __metadata:
   checksum: 10c0/52ad34ba18edb3613253ecbc7db5c8d6067ed103d8786051e96d42bcb383f7473bbda91b25297435b8a531fe308726cf1bb978456b9fcce044e4885510d73252
   languageName: node
   linkType: hard
+
+"root@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "root@workspace:."
+  dependencies:
+    "@gewis/eslint-config-react": "npm:^2.3.0"
+    "@gewis/eslint-config-typescript": "npm:^2.3.0"
+    "@gewis/prettier-config": "npm:^2.2.2"
+    "@types/node": "npm:^22.13.11"
+    eslint: "npm:^9.23.0"
+    prettier: "npm:^3.5.3"
+    typescript: "npm:^5.8.2"
+  languageName: unknown
+  linkType: soft
 
 "rspack-resolver@npm:^1.1.0":
   version: 1.2.2
