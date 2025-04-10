@@ -32,8 +32,7 @@
     "lint-fix": "eslint src --fix",
     "format": "prettier --ignore-path .gitignore --check ./src/",
     "format-fix": "prettier --ignore-path .gitignore --write ./src/",
-    "gen-client": "openapi-ts",
-    "prepare": "husky"
+    "gen-client": "openapi-ts"
   },
   "devDependencies": {
     "@gewis/eslint-config-react": "^2.3.0",
@@ -48,7 +47,6 @@
     "@vitejs/plugin-react-swc": "^3.8.1",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.23.0",
-    "husky": "^9.1.7",
     "openapi-typescript-codegen": "^0.29.0",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
