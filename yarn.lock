@@ -2137,6 +2137,56 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@gewis/aurora-client-vite@workspace:*, @gewis/aurora-client-vite@workspace:packages/aurora-client-vite":
+  version: 0.0.0-use.local
+  resolution: "@gewis/aurora-client-vite@workspace:packages/aurora-client-vite"
+  dependencies:
+    "@vitejs/plugin-react-swc": "npm:^3.8.1"
+    vite-plugin-svgr: "npm:^4.3.0"
+    vite-tsconfig-paths: "npm:^5.1.4"
+  peerDependencies:
+    vite: ^6.2.2
+  languageName: unknown
+  linkType: soft
+
+"@gewis/aurora-client@workspace:*, @gewis/aurora-client@workspace:packages/aurora-client":
+  version: 0.0.0-use.local
+  resolution: "@gewis/aurora-client@workspace:packages/aurora-client"
+  dependencies:
+    "@fortawesome/fontawesome-svg-core": "npm:^6.7.2"
+    "@fortawesome/free-solid-svg-icons": "npm:^6.7.2"
+    "@fortawesome/react-fontawesome": "npm:^0.2.2"
+    "@gewis/aurora-client-vite": "workspace:*"
+    "@giphy/js-fetch-api": "npm:^5.6.0"
+    "@giphy/react-components": "npm:^10.0.1"
+    "@hey-api/client-fetch": "npm:^0.8.3"
+    "@hey-api/openapi-ts": "npm:^0.64.13"
+    "@tailwindcss/postcss": "npm:^4.0.15"
+    "@types/node": "npm:^22.13.11"
+    "@types/react": "npm:^19.0.12"
+    "@types/react-dom": "npm:^19.0.4"
+    "@types/react-helmet": "npm:^6.1.11"
+    "@types/react-router-dom": "npm:^5.3.3"
+    autoprefixer: "npm:^10.4.21"
+    clsx: "npm:^2.1.1"
+    framer-motion: "npm:^12.5.0"
+    openapi-typescript-codegen: "npm:^0.29.0"
+    postcss: "npm:^8.5.3"
+    react: "npm:^19.0.0"
+    react-dom: "npm:^19.0.0"
+    react-helmet: "npm:^6.1.0"
+    react-router-dom: "npm:^6.30.0"
+    react-scripts: "npm:^5.0.1"
+    sass: "npm:^1.86.0"
+    socket.io: "npm:^4.8.1"
+    socket.io-client: "npm:^4.8.1"
+    styled-components: "npm:^6.1.16"
+    tailwindcss: "npm:^4.0.15"
+    typescript: "npm:^5.8.2"
+    vite: "npm:^6.2.2"
+  languageName: unknown
+  linkType: soft
+
 "@gewis/eslint-config-react@npm:^2.3.0":
   version: 2.3.0
   resolution: "@gewis/eslint-config-react@npm:2.3.0"
@@ -11439,43 +11489,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"narrowcasting-client@workspace:packages/aurora-client":
+"narrowcasting-client@workspace:client":
   version: 0.0.0-use.local
-  resolution: "narrowcasting-client@workspace:packages/aurora-client"
+  resolution: "narrowcasting-client@workspace:client"
   dependencies:
-    "@fortawesome/fontawesome-svg-core": "npm:^6.7.2"
-    "@fortawesome/free-solid-svg-icons": "npm:^6.7.2"
-    "@fortawesome/react-fontawesome": "npm:^0.2.2"
-    "@giphy/js-fetch-api": "npm:^5.6.0"
-    "@giphy/react-components": "npm:^10.0.1"
-    "@hey-api/client-fetch": "npm:^0.8.3"
-    "@hey-api/openapi-ts": "npm:^0.64.13"
-    "@tailwindcss/postcss": "npm:^4.0.15"
-    "@types/node": "npm:^22.13.11"
-    "@types/react": "npm:^19.0.12"
-    "@types/react-dom": "npm:^19.0.4"
-    "@types/react-helmet": "npm:^6.1.11"
-    "@types/react-router-dom": "npm:^5.3.3"
-    "@vitejs/plugin-react-swc": "npm:^3.8.1"
-    autoprefixer: "npm:^10.4.21"
-    clsx: "npm:^2.1.1"
-    framer-motion: "npm:^12.5.0"
-    openapi-typescript-codegen: "npm:^0.29.0"
-    postcss: "npm:^8.5.3"
-    react: "npm:^19.0.0"
-    react-dom: "npm:^19.0.0"
-    react-helmet: "npm:^6.1.0"
-    react-router-dom: "npm:^6.30.0"
-    react-scripts: "npm:^5.0.1"
-    sass: "npm:^1.86.0"
-    socket.io: "npm:^4.8.1"
-    socket.io-client: "npm:^4.8.1"
-    styled-components: "npm:^6.1.16"
-    tailwindcss: "npm:^4.0.15"
-    typescript: "npm:^5.8.2"
+    "@gewis/aurora-client": "workspace:*"
+    "@gewis/aurora-client-vite": "workspace:*"
     vite: "npm:^6.2.2"
-    vite-plugin-svgr: "npm:^4.3.0"
-    vite-tsconfig-paths: "npm:^5.1.4"
   languageName: unknown
   linkType: soft
 
@@ -15720,11 +15740,11 @@ __metadata:
 
 "typescript@patch:typescript@npm%3A^5.8.2#optional!builtin<compat/typescript>":
   version: 5.8.2
-  resolution: "typescript@patch:typescript@npm%3A5.8.2#optional!builtin<compat/typescript>::version=5.8.2&hash=cef18b"
+  resolution: "typescript@patch:typescript@npm%3A5.8.2#optional!builtin<compat/typescript>::version=5.8.2&hash=5786d5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/8a6cd29dfb59bd5a978407b93ae0edb530ee9376a5b95a42ad057a6f80ffb0c410489ccd6fe48d1d0dfad6e8adf5d62d3874bbd251f488ae30e11a1ce6dabd28
+  checksum: 10c0/5448a08e595cc558ab321e49d4cac64fb43d1fa106584f6ff9a8d8e592111b373a995a1d5c7f3046211c8a37201eb6d0f1566f15cdb7a62a5e3be01d087848e2
   languageName: node
   linkType: hard
 

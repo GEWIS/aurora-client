@@ -1,0 +1,24 @@
+{
+  "name": "@gewis/aurora-client-vite",
+  "version": "1.0.0",
+  "main": "index.mjs",
+  "type": "module",
+  "files": [
+    "index.mjs",
+    "vite.package.mjs",
+    "vite.spa.mjs"
+  ],
+  "dependencies": {
+    "@vitejs/plugin-react-swc": "^3.8.1",
+    "vite-plugin-lib-inject-css": "^2.2.2",
+    "vite-plugin-svgr": "^4.3.0",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
+  "peerDependencies": {
+    "vite": "^6.2.2"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "packageManager": "yarn@4.9.0"
+}
