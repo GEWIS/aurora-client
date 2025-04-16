@@ -39,7 +39,7 @@ export default function HandlerSwitcher({ socket }: Props) {
     case Handlers.SPOTIFY:
       return <SpotifyView socket={socket} />;
     case Handlers.CAROUSEL_POSTER:
-      return <CarouselPosterView />;
+      return <CarouselPosterView socket={socket} />;
     case Handlers.STATIC_POSTER:
       return <StaticPosterView socket={socket} />;
     case Handlers.STAGE_EFFECTS:

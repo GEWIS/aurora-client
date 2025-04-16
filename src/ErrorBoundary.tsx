@@ -30,7 +30,7 @@ export default class ErrorBoundary extends Component<Props, State> {
           <p>
             {this.state.error.name}: {this.state.error.message}
           </p>
-          {this.state.stack && <p>{this.state.stack}</p>}
+          {this.state.stack && <p className="whitespace-pre-line">{this.state.stack}</p>}
         </div>
       );
     }
