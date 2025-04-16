@@ -1,0 +1,21 @@
+{
+  "name": "@gewis/aurora-client-theme",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.ts",
+  "style": "src/components/index.scss",
+  "scripts": {
+    "build": "tsc && vite build"
+  },
+  "dependencies": {
+    "@gewis/aurora-client-vite": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "vite": "^6.2.6"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "packageManager": "yarn@4.9.0"
+}
