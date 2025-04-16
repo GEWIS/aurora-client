@@ -1,24 +1,4 @@
 {
-  "compilerOptions": {
-    "target": "ES2022",
-    "useDefineForClassFields": true,
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-
-    /* Bundler mode */
-    "moduleResolution": "node",
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "jsx": "react-jsx",
-
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
-    "outDir": "./dist"
-  },
-  "include": ["src"]
+  "extends": "../../tsconfig.base.json",
+  "include": ["src", "index.ts"]
 }

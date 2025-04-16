@@ -1,37 +1,30 @@
 {
   "name": "@gewis/aurora-client",
   "version": "1.0.0",
-  "private": true,
-  "main": "src/index.tsx",
+  "main": "index.ts",
+  "style": "src/index.scss",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -noEmit && vite build",
-    "serve": "vite preview",
-    "generate": "openapi-ts"
+    "build": "tsc && vite build"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.7.2",
-    "@fortawesome/free-solid-svg-icons": "^6.7.2",
-    "@fortawesome/react-fontawesome": "^0.2.2",
-    "@gewis/aurora-client-vite": "workspace:*",
+    "@gewis/aurora-client-api": "workspace:*",
+    "@gewis/aurora-client-theme": "workspace:*",
     "@giphy/js-fetch-api": "^5.6.0",
     "@giphy/react-components": "^10.0.1",
-    "@hey-api/client-fetch": "^0.8.3",
     "@tailwindcss/postcss": "^4.0.15",
     "clsx": "^2.1.1",
     "framer-motion": "^12.5.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.30.0",
     "react-scripts": "^5.0.1",
     "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1",
-    "styled-components": "^6.1.16",
-    "vite": "^6.2.2"
+    "styled-components": "^6.1.16"
   },
   "devDependencies": {
-    "@hey-api/openapi-ts": "^0.64.13",
+    "@tailwindcss/postcss": "^4.1.4",
     "@types/node": "^22.13.11",
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
@@ -42,7 +35,8 @@
     "postcss": "^8.5.3",
     "sass": "^1.86.0",
     "tailwindcss": "^4.0.15",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "vite": "^6.2.6"
   },
   "engines": {
     "node": ">=22.0.0"

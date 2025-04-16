@@ -1,10 +1,16 @@
-import './index.css';
+import './index.scss';
 import { BrowserRouter } from 'react-router-dom';
+import { client } from '@gewis/aurora-client-api';
 import AuthContextProvider from './contexts/AuthContext';
 import ErrorBoundary from './ErrorBoundary';
-import { client } from './api/client.gen';
 import ClientView from './ClientView';
-export default function App() {
+import { HandlerPlugin } from './HandlerSwitcher';
+
+interface Props {
+  handlers: HandlerPlugin[];
+}
+
+export default function App({ handlers }: Props) {
   client.setConfig({
     baseUrl: '/api',
   });
@@ -13,7 +19,7 @@ export default function App() {
     <ErrorBoundary>
       <BrowserRouter>
         <AuthContextProvider>
-          <ClientView />
+          <ClientView handlers={handlers} />
         </AuthContextProvider>
       </BrowserRouter>
     </ErrorBoundary>

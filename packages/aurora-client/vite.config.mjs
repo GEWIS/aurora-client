@@ -1,8 +1,5 @@
-import { defineConfig } from 'vite';
-import config from '@gewis/aurora-client-vite'
+import { packageConfig } from '@gewis/aurora-client-vite';
 
-export default defineConfig(() => {
-  return {
-    ...config,
-  }
-})
+export default {
+  ...packageConfig,
+}

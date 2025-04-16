@@ -1,8 +1,7 @@
 import { io } from 'socket.io-client';
 import { Dispatch, SetStateAction } from 'react';
-import { Handlers } from '../HandlerSwitcher';
 
-export default function registerRootHandler(setCurrentHandler: Dispatch<SetStateAction<Handlers | null>>) {
+export default function registerRootHandler(setCurrentHandler: Dispatch<SetStateAction<string | null>>) {
   const rootSocket = io('/', {
     path: '/socket.io/',
   });
@@ -11,7 +10,7 @@ export default function registerRootHandler(setCurrentHandler: Dispatch<SetState
     console.warn('SocketIO: connected to /');
   });
 
-  rootSocket.on('handler_set', (handler: Handlers) => {
+  rootSocket.on('handler_set', (handler: string) => {
     console.warn(`Current handler: ${handler}`);
     setCurrentHandler(handler);
   });

@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, TargetAndTransition } from 'framer-motion';
-import { Order } from '../api';
+import { Order } from '@gewis/aurora-client-api';
 import GlassCard from './GlassCard';
 
 interface Props {

@@ -1,6 +1,6 @@
 import { Socket } from 'socket.io-client';
 import { useCallback, useEffect, useState } from 'react';
-import { getAllOrders, Order } from '../api';
+import { getAllOrders, Order } from '@gewis/aurora-client-api';
 import OrderList from '../components/OrderList';
 
 interface ShowOrdersEvent {
