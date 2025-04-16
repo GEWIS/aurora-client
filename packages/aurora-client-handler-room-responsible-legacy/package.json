@@ -1,0 +1,27 @@
+{
+  "name": "@gewis/aurora-client-handler-room-responsible-legacy",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && vite build"
+  },
+  "dependencies": {
+    "@gewis/aurora-client-api": "workspace:*",
+    "@gewis/aurora-client-theme": "workspace:*",
+    "@gewis/aurora-client-util": "workspace:*",
+    "@gewis/aurora-client-vite": "workspace:*",
+    "react": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.2",
+    "sass": "^1.86.3",
+    "tailwindcss": "^4.1.4",
+    "typescript": "^5.8.3",
+    "vite": "^6.2.2"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "packageManager": "yarn@4.9.0"
+}

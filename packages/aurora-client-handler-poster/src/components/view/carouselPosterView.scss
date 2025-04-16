@@ -1,0 +1,76 @@
+* {
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box; /* Opera/IE 8+ */
+}
+
+body {
+  transition: background ease-in-out;
+  font-family: 'Raleway', sans-serif;
+  //font-size: 1.75em;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+
+.text-shadow {
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 /0.4));
+}
+
+/* Height of the progress bar */
+.progress-bar-height {
+  height: 7.5vh;
+}
+
+/* All progress bar elements */
+#poster #progress-bar {
+}
+
+/* Aurora Watermark shown on the first poster of the carousel. Hidden otherwise */
+#poster #progress-bar #watermark {
+  /*You probably want to set some custom size if you rescale everything
+  /*font-size: '2em';*/
+}
+
+/* The full-width box the slider is contained in */
+#poster #progress-bar #progress-bar-slider-outer {
+  height: 6.25%;
+  margin-top: -0.1%;
+}
+
+/* The slider showing the progress of the poster */
+#poster #progress-bar #progress-bar-slider-outer #progress-bar-slider-inner {
+}
+
+/* The semi-opaque contents of the progress bar */
+#poster #progress-bar #progress-bar-container {
+  padding: 0 1.25vw;
+}
+
+/* The outer div containing one or more logos */
+#poster #progress-bar #progress-bar-container #progress-bar-logos {
+  height: 100%;
+  width: 20vw;
+}
+
+/* Your uploaded logo */
+#poster #progress-bar #progress-bar-container #progress-bar-logos svg:first-child {
+  /*height: 88%;*/
+  height: 4.6vh;
+}
+
+/* The borrel mode logo (SudoSOS) */
+#poster #progress-bar #progress-bar-container #progress-bar-logos svg#progress-bar-logo-borrelmode {
+  /*height: 70%;*/
+  height: 3.7vh;
+}
+
+/* The div containing the title in the progress bar */
+#poster #progress-bar #progress-bar-container #progress-bar-title {
+}
+
+/* The div containing the clock of the progress bar */
+#poster #progress-bar #progress-bar-container #progress-bar-clock {
+  width: 20vw;
+  font-size: 4.4vh;
+}
