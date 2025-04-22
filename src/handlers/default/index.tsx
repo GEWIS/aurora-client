@@ -1,6 +1,7 @@
 import { Gif } from '@giphy/react-components';
 import { GifResult, GiphyFetch } from '@giphy/js-fetch-api';
 import { useEffect, useState } from 'react';
+import { LogoLine } from '../../components/aurora-logos/LogoLine';
 
 export { default as LoadingView } from './LoadingView';
 export { default as ReloadCountdown } from './ReloadCountdown';
@@ -41,6 +42,11 @@ export default function View() {
             Go to the backoffice to set a handler for this screen.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">{renderGIF()}</div>
+        </div>
+        <div className="absolute bottom-0 left-0">
+          <div className="m-4" id="aurora-watermark">
+            <LogoLine variant="left" size="2em" dark />
+          </div>
         </div>
       </main>
     </>
