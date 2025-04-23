@@ -1,7 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Socket } from 'socket.io-client';
 import { clsx } from 'clsx';
-import { getCenturionState, CenturionStateResponse, RgbColor, TrackChangeEvent } from '../../api';
+import {
+  getCenturionState,
+  CenturionStateResponse,
+  RgbColor,
+  TrackChangeEvent,
+  LightsColorResponse,
+  getAllLightsColors,
+  HexColor,
+} from '../../api';
 import Background from './components/Background';
 import styles from './centurion.module.css';
 import Strobe from './components/Strobe';
@@ -18,30 +26,15 @@ type HornEvent = {
   counter: number;
 };
 
-enum Colors {
-  'white' = '#cccccc',
-  'blindingwhite' = '#ffffff',
-  'uv' = '#7e48a2',
-  'lightpink' = '#ecc9f6',
-  'pink' = '#dd75ec',
-  'orange' = '#f18900',
-  'purple' = '#8800b6',
-  'brown' = '#502626',
-  'red' = '#ff0000',
-  'yellow' = '#fff225',
-  'lime' = '#9cff55',
-  'green' = '#169300',
-  'blue' = '#003a91',
-  'gold' = '#d9923f',
-  'rosered' = '#c91651',
-  'cyan' = '#07fff7',
-  'lightblue' = '#98e7ff',
+export interface CurrentColors {
+  start: HexColor;
+  end: HexColor;
 }
 
-export interface CurrentColors {
-  start: Colors;
-  end: Colors;
-}
+const defaultColors: CurrentColors = {
+  start: '#ecc9f6',
+  end: '#f18900',
+};
 
 enum Status {
   'STOPPED' = 'Stopped',
@@ -50,6 +43,7 @@ enum Status {
 }
 
 export default function CenturionView({ socket }: Props) {
+  const [colorDefinitions, setColorDefinitions] = useState<LightsColorResponse[]>([]);
   const [artist, setArtists] = useState<string | null>(null);
   const [song, setSong] = useState<string | null>(null);
 
@@ -58,38 +52,55 @@ export default function CenturionView({ socket }: Props) {
 
   const [hornCount, setHornCount] = useState<number | undefined>();
   const [strobe, setStrobe] = useState<boolean>(false);
-  const [colors, setColors] = useState<CurrentColors>({
-    start: Colors.lightpink,
-    end: Colors.orange,
+  const [rgbColors, setRgbColors] = useState<{ start: RgbColor; end: RgbColor }>({
+    start: RgbColor.LIGHTPINK,
+    end: RgbColor.ORANGE,
   });
+  const [colors, _setColors] = useState<CurrentColors>(defaultColors);
+
+  const getHexFromDefinition = useCallback(
+    (color: RgbColor): HexColor | undefined => {
+      const match = colorDefinitions.find((c) => c.color === color);
+      return match?.spec.hex;
+    },
+    [colorDefinitions],
+  );
 
   useEffect(() => {
+    const startHex = getHexFromDefinition(rgbColors.start);
+    const endHex = getHexFromDefinition(rgbColors.end);
+    _setColors({ start: startHex ?? defaultColors.start, end: endHex ?? defaultColors.end });
+  }, [colorDefinitions, getHexFromDefinition, rgbColors]);
+
+  const init = async () => {
+    const resColors = await getAllLightsColors();
+    if (resColors.response.ok && resColors.data) {
+      setColorDefinitions(resColors.data);
+    }
+
     // TODO what to do if centurion state cannot be fetched?
-    getCenturionState()
-      .then((res) => {
-        if (!res || !res.data) return;
-        if (res.data.tape) {
-          setMixtape(res.data.tape);
-          setStatus(Status.READY);
-        }
-        if (res.data.lastHorn) setHornCount(res.data.lastHorn.data.counter);
-        if (res.data.lastSong && Array.isArray(res.data.lastSong.data)) {
-          setSong(res.data.lastSong.data[0].title);
-          setArtists(res.data.lastSong.data[0].artist);
-        }
-        if (res.data.lastSong && !Array.isArray(res.data.lastSong.data)) {
-          setSong(res.data.lastSong.data.title);
-          setArtists(res.data.lastSong.data.artist);
-        }
-        if (res.data.colors) {
-          setColors({
-            start: Colors[res.data.colors[0]],
-            end: Colors[res.data.colors[1]],
-          });
-        }
-        if (res.data.playing) setStatus(Status.PLAYING);
-      })
-      .catch((e) => console.error(e));
+    const resState = await getCenturionState();
+    if (!resState || !resState.data) return;
+    if (resState.data.tape) {
+      setMixtape(resState.data.tape);
+      setStatus(Status.READY);
+    }
+    if (resState.data.lastHorn) setHornCount(resState.data.lastHorn.data.counter);
+    if (resState.data.lastSong && Array.isArray(resState.data.lastSong.data)) {
+      setSong(resState.data.lastSong.data[0].title);
+      setArtists(resState.data.lastSong.data[0].artist);
+    }
+    if (resState.data.lastSong && !Array.isArray(resState.data.lastSong.data)) {
+      setSong(resState.data.lastSong.data.title);
+      setArtists(resState.data.lastSong.data.artist);
+    }
+    if (resState.data.colors) {
+      setRgbColors({
+        start: resState.data.colors[0],
+        end: resState.data.colors[1],
+      });
+    }
+    if (resState.data.playing) setStatus(Status.PLAYING);
 
     socket.on('loaded', (mixTapes: MixTape[]) => {
       const mixTape = mixTapes[0];
@@ -128,10 +139,16 @@ export default function CenturionView({ socket }: Props) {
 
     socket.on('change_colors', (newColorsEvent: RgbColor[][]) => {
       const colors = newColorsEvent[0];
-      setColors({
-        start: Colors[colors[0]],
-        end: Colors[colors[1]],
+      setRgbColors({
+        start: colors[0],
+        end: colors[1],
       });
+    });
+  };
+
+  useEffect(() => {
+    init().catch((e) => {
+      console.error(e);
     });
 
     return () => {
