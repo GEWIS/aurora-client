@@ -1,5 +1,5 @@
 # Build in a different image to keep the target image clean
-FROM node:22-alpine AS build
+FROM node:22 AS build
 RUN apk add git
 WORKDIR /usr/src/app
 
