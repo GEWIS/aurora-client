@@ -24,7 +24,7 @@ Deployment is done using Docker-compose in the core repository.
 This should work out of the box if you meet the prerequisites.
 
 ## Copyright
-Copyright © 2023-2024 Study Association GEWIS - Some rights reserved.
+Copyright © 2023-2025 Study Association GEWIS - Some rights reserved.
 You can use our software freely within the limits of our license.
 However, we worked very hard on this project and invested a lot of time in it
 so we ask you to leave our copyright marks in place when modifying our software.
