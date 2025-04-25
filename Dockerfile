@@ -1,6 +1,5 @@
 # Build in a different image to keep the target image clean
 FROM node:22 AS build
-RUN apk add git
 WORKDIR /usr/src/app
 
 # Copy client files
