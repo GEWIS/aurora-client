@@ -9,15 +9,15 @@ the client can make HTTP calls to the core to request this data.
 ## Prerequisites
 - NodeJS 22.
 - A locally running copy of [aurora-core](https://github.com/gewis/narrowcasting-core).
-  The backoffice repository should be cloned next to the core repository, so in the folder `../aurora-core`.
+  The client repository should be cloned next to the core repository, so in the folder `../aurora-core`.
   This is necessary to generate the required API client files (installation step 2).
 
 ## Installation
 1. Run `yarn install`.
 2. Run `yarn gen-client` to generate the Typescript files required to communicate with the core.
 3. Run `yarn dev`.
-4. The application should now be running at http://localhost:8080.
-You can authenticate a screen on the client by going to th URL https://localhost:8081/?key=KEY_HERE.
+4. The application should now be running at http://localhost:8081.
+You can authenticate a screen on the client by going to the URL https://localhost:8081/?key=KEY_HERE.
 
 ## Deployment
 Deployment is done using Docker-compose in the core repository.
