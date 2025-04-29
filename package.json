@@ -11,7 +11,7 @@
     "@hey-api/client-fetch": "^0.10.0",
     "@tailwindcss/postcss": "^4.0.15",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.5.0",
+    "framer-motion": "^12.9.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-helmet": "^6.1.0",
