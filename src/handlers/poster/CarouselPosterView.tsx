@@ -98,9 +98,6 @@ export default function CarouselPosterView({ socket }: Props) {
         style={{ backgroundImage: 'url("base/poster-background.png")' }}
         id="poster"
       >
-        <link rel="stylesheet" href="/src/handlers/poster/poster.css" />
-        {/* Custom stylesheet should be imported AFTER the base stylesheet,
-      because the precedence is that the last CSS definition will be used */}
         {settings?.stylesheet && <link rel="stylesheet" href={URL_CUSTOM_STYLESHEET} />}
         <div className="overflow-hidden w-full h-full">
           <PosterCarousel posters={posters || []} currentPoster={!posterIndex ? 0 : posterIndex} setTitle={setTitle} />

@@ -21,24 +21,24 @@ export default function OrderList({ orders }: Props) {
 
   return (
     // bg-blue-500
-    <div className="absolute top-0 right-0 z-50 m-[1.5vh] text-white" style={{ height: '85%', fontSize: '5.5vh' }}>
+    <div className="absolute top-0 right-0 z-50 m-4 text-white h-10/12 text-6xl">
       <div>
         <AnimatePresence>
           {orders.length > 0 && (
             <motion.div initial={animationInitial} animate={animationIn} exit={animationOut}>
-              <GlassCard className="top-0 right-0 mb-[1.5vh] px-[2vh] py-[1.5vh] text-center">Ready</GlassCard>
+              <GlassCard className="top-0 right-0 mb-5 px-4 py-7 text-center">Ready</GlassCard>
             </motion.div>
           )}
         </AnimatePresence>
         <ul
-          className="grid grid-flow-col-dense gap-[1.5vh]"
+          className="grid grid-flow-col-dense gap-5"
           style={{ gridTemplateRows: 'repeat(6, minmax(0, 1fr))' }}
           dir="rtl"
         >
           <AnimatePresence>
             {orders.map((order) => (
               <motion.li key={order.number} initial={animationInitial} animate={animationIn} exit={animationOut} layout>
-                <GlassCard className="text-center p-[1.5vh] min-w-[2.3em]">{order.number}</GlassCard>
+                <GlassCard className="text-center px-4 py-7 min-w-36">{order.number}</GlassCard>
               </motion.li>
             ))}
           </AnimatePresence>
