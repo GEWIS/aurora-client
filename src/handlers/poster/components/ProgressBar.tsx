@@ -44,7 +44,7 @@ export default function ProgressBar({
         style={{ backgroundColor: !minimal && !hide ? 'rgba(0, 0, 0, 0.5)' : '' }}
       >
         <div
-          className="absolute w-full h-1.5 mt-[-0.2rem]"
+          className="absolute w-full h-1.5 -mt-1"
           style={{ bottom: minimal || hide ? 0 : '' }}
           id="progress-bar-slider-outer"
         >

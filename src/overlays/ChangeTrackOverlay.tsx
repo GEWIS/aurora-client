@@ -37,11 +37,11 @@ export default function ChangeTrackOverlay({ socket }: Props) {
     const artists = songs.map((song) => song.artists.join(', ')).join(' - ');
 
     return (
-      <div className="flex flex-row gap-[1.5vw] items-center">
-        <img src={songs[0].cover} className="h-[10vh]" alt="" />
+      <div className="flex flex-row gap-8 items-center">
+        <img src={songs[0].cover} className="h-28" alt="" />
         <div className="flex flex-col">
-          <p className="text-[3vh]">{title}</p>
-          <p className="text-[2vh]">{artists}</p>
+          <p className="text-3xl">{title}</p>
+          <p className="text-xl">{artists}</p>
         </div>
       </div>
     );
@@ -52,12 +52,12 @@ export default function ChangeTrackOverlay({ socket }: Props) {
       <AnimatePresence>
         {visible && (
           <motion.div
-            className="absolute w-full -bottom-[2.5vw] p-[1.75vw] flex items-center justify-center text-white z-100"
+            className="absolute w-full -bottom-12 py-8 px-48 flex items-center justify-center text-white z-100"
             initial={{ y: '20vh' }}
             animate={{ y: 0, transition: { duration: 1 } }}
             exit={{ y: '20vh', transition: { duration: 1 } }}
           >
-            <GlassCard className="pt-[1vw] pb-[2vw] px-[1.75vw] z-100">{renderSongs()}</GlassCard>
+            <GlassCard className="pt-5 pb-10 px-8 z-100">{renderSongs()}</GlassCard>
           </motion.div>
         )}
       </AnimatePresence>
