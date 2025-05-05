@@ -1,11 +1,12 @@
 import './components/index.scss';
 import { useEffect, useState } from 'react';
 import { Socket } from 'socket.io-client';
-import { getPosters, getPosterSettings, Poster, PosterScreenSettingsResponse } from '../../api';
+import { FooterSize, getPosters, getPosterSettings, Poster, PosterScreenSettingsResponse } from '../../api';
 import ChangeTrackOverlay from '../../overlays/ChangeTrackOverlay';
 import PosterCarousel from './components/Carousel';
 import ProgressBar from './components/ProgressBar';
 import { URL_CUSTOM_STYLESHEET, URL_PROGRESS_BAR_LOGO } from './constants';
+import PosterWatermark from './components/PosterWatermark';
 
 interface Props {
   socket: Socket;
@@ -88,6 +89,8 @@ export default function CarouselPosterView({ socket }: Props) {
 
   const selectedPoster = posters && posters.length > 0 && posterIndex !== undefined ? posters[posterIndex] : undefined;
 
+  const progressBarMinimal = settings?.defaultMinimal || selectedPoster?.footer === FooterSize.MINIMAL;
+
   return (
     <>
       <div
@@ -101,6 +104,12 @@ export default function CarouselPosterView({ socket }: Props) {
         {settings?.stylesheet && <link rel="stylesheet" href={URL_CUSTOM_STYLESHEET} />}
         <div className="overflow-hidden w-full h-full">
           <PosterCarousel posters={posters || []} currentPoster={!posterIndex ? 0 : posterIndex} setTitle={setTitle} />
+          <PosterWatermark
+            posterIndex={posterIndex ?? -1}
+            progressBarMinimal={progressBarMinimal}
+            progressBarLogo={settings?.progressBarLogo}
+            borrelMode={borrelMode}
+          />
           <ProgressBar
             // poster={selectedPoster}
             title={title}
