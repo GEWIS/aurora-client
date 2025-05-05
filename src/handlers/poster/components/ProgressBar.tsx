@@ -1,4 +1,3 @@
-import { LogoLine } from '../../../components/aurora-logos/LogoLine';
 import ProgressBarSlider from './ProgressBarSlider';
 import Clock from './Clock';
 
@@ -33,11 +32,6 @@ export default function ProgressBar({
 }: Props) {
   return (
     <div className="absolute w-full bottom-0 z-50">
-      {posterIndex === 0 && (
-        <div className="mb-4 opacity-50" id="aurora-watermark">
-          <LogoLine variant="left" size="2em" dark />
-        </div>
-      )}
       <div
         className="relative text-white flex flex-col text-5xl progress-bar-height"
         id="progress-bar"
