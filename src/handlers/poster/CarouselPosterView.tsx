@@ -115,7 +115,7 @@ export default function CarouselPosterView({ socket }: Props) {
             title={title}
             seconds={posterTimeout !== undefined ? selectedPoster?.timeout : undefined}
             posterIndex={posterIndex}
-            minimal={settings?.defaultMinimal}
+            minimal={progressBarMinimal}
             nextPoster={nextPoster}
             pausePoster={pausePoster}
             borrelMode={borrelMode}
