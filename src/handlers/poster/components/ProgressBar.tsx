@@ -39,28 +39,37 @@ export default function ProgressBar({
         </div>
       )}
       <div
-        className="relative text-white flex flex-col text-5xl progress-bar-height"
+        className="relative text-white flex flex-col text-5xl h-20 progress-bar-height"
         id="progress-bar"
         style={{ backgroundColor: !minimal && !hide ? 'rgba(0, 0, 0, 0.5)' : '' }}
       >
-        <div className="absolute w-full" style={{ bottom: minimal || hide ? 0 : '' }} id="progress-bar-slider-outer">
+        <div
+          className="absolute w-full h-1.5 mt-[-0.2rem]"
+          style={{ bottom: minimal || hide ? 0 : '' }}
+          id="progress-bar-slider-outer"
+        >
           {seconds !== undefined && posterIndex !== undefined && (
             <ProgressBarSlider seconds={seconds} posterIndex={posterIndex} color={progressBarColor} />
           )}
         </div>
         <div
-          className={`flex-grow flex justify-center items-center h-full ${hide ? 'hidden' : ''}`}
+          className={`flex-grow flex justify-center items-center h-full px-6 ${hide ? 'hidden' : ''}`}
           id="progress-bar-container"
         >
-          <div className="relative py-3" id="progress-bar-logos">
+          <div className="relative py-3 h-full w-1/5" id="progress-bar-logos">
             <div className="h-full flex flex-row gap-6 items-center">
               {logo && (
                 <>
-                  <svg style={{ filter: 'drop-shadow(3px 5px 2px rgb(0 0 0 /0.4))' }} viewBox="0 0 50 100">
+                  <svg
+                    className="h-12"
+                    style={{ filter: 'drop-shadow(3px 5px 2px rgb(0 0 0 /0.4))' }}
+                    viewBox="0 0 50 100"
+                  >
                     <image x="0" y="0" height="100%" width="100%" xlinkHref={logo} />
                   </svg>
                   {borrelMode && (
                     <svg
+                      className="h-10"
                       style={{
                         filter: 'brightness(0) invert(1) drop-shadow(3px 5px 2px rgb(0 0 0 /0.4))',
                       }}
