@@ -25,7 +25,7 @@ export default function OrdersOverlay({ socket }: Props) {
       });
 
     const newOrdersCallback = (newOrderSet: ShowOrdersEvent[]) => {
-      setOrders(newOrderSet[0].orders);
+      setOrders(newOrderSet[0].orders.sort((a, b) => a.number - b.number));
     };
 
     socket.on('orders', newOrdersCallback);
