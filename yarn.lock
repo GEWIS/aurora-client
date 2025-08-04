@@ -1562,10 +1562,10 @@
     append-query "^2.1.0"
     throttle-debounce "^3.0.1"
 
-"@giphy/js-fetch-api@*", "@giphy/js-fetch-api@^5.6.0":
-  version "5.6.0"
-  resolved "https://registry.yarnpkg.com/@giphy/js-fetch-api/-/js-fetch-api-5.6.0.tgz#5658c18f67fcb9ad0ddad21acd5ad5392ed3aaf9"
-  integrity sha512-hKZ7XZWGSzR29ISW1f6LWeVZ7GgWwhVuZprPMj3nrhHT6RkmkKghIP/yXKpWyhfTyAVgjeNGq0T/fAmGNKRvGQ==
+"@giphy/js-fetch-api@*", "@giphy/js-fetch-api@^5.7.0":
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/@giphy/js-fetch-api/-/js-fetch-api-5.7.0.tgz#933e2c3147b25551c40baa3905c93fb7a18c6d18"
+  integrity sha512-5W8j7QUEnWRhW2KKlRhwHNCz0HwUeW0SlFryKFrqzE5XB8kjoAwZ2GvwtLNnkpjN0cniLE+bSGAzMKcL5Bt5Vg==
   dependencies:
     "@giphy/js-types" "*"
     "@giphy/js-util" "*"
