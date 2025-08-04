@@ -1583,10 +1583,10 @@
     "@giphy/js-types" "*"
     uuid "^9.0.0"
 
-"@giphy/react-components@^10.0.1":
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/@giphy/react-components/-/react-components-10.0.1.tgz#1b8e82ac8bcc1f6a34c5cf2cf2e37393fcff2400"
-  integrity sha512-JFAkB45zTLhen2mmO+mApJtjEr4OVPLXYByDSN1FJQNgKc6xJ86Hk5+YOHNXuXa1NLXtGBlvXUAcz3oxKyfgHw==
+"@giphy/react-components@^10.1.0":
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/@giphy/react-components/-/react-components-10.1.0.tgz#f5a072b44bc9d82ac93ae8db994d5c476e912cf0"
+  integrity sha512-MVtLwLBkYs75gs5OMEcr+c5Ld3Xg0wtvgF06jHk6xQPWWj/801WwYPEOndATkHnKAojiZb2YKc9RJm2XdPYJfw==
   dependencies:
     "@giphy/colors" "*"
     "@giphy/js-analytics" "*"
