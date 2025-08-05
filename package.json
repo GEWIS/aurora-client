@@ -7,7 +7,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@giphy/js-fetch-api": "^5.7.0",
-    "@giphy/react-components": "^10.0.1",
+    "@giphy/react-components": "^10.1.0",
     "@hey-api/client-fetch": "^0.10.0",
     "@tailwindcss/postcss": "^4.1.11",
     "clsx": "^2.1.1",
