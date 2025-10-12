@@ -21,7 +21,9 @@ function Background({ colors, progression }: Props) {
       <Helmet>
         <script type="text/javascript">{imports()}</script>
         <script type="text/javascript">{tweenMax()}</script>
-        <script type="text/javascript">{lavalampJavascript(colors.start, colors.end, progression, screen?.scaleFactor)}</script>
+        <script type="text/javascript">
+          {lavalampJavascript(colors.start, colors.end, progression, screen?.scaleFactor)}
+        </script>
         <script type="x-shader/x-vertex" id="vertexMetaballs">
           {lavalampVertex()}
         </script>
