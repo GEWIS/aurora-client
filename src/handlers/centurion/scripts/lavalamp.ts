@@ -1,7 +1,7 @@
 {
   /* https://codepen.io/mpirdimpirdis/pen/dWwGKa */
 }
-export function lavalampJavascript(startColor: string, endColor: string, progression: number) {
+export function lavalampJavascript(startColor: string, endColor: string, progression: number, scaleFactor: number = 1) {
   return `
         var canvas;
         var gl;
@@ -77,7 +77,7 @@ export function lavalampJavascript(startColor: string, endColor: string, progres
           var maxMultiplierArcX = .75 * (1 + ${progression} / 10);
           var minMultiplierArcY = -.25 * (1 + ${progression} / 10);
           var maxMultiplierArcY = .25 * (1 + ${progression} / 10);
-          var scale = 1.0;
+          var scale = ${scaleFactor};
   
           var metaballsGroup1 = {
             metaballs:[

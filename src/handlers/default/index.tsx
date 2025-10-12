@@ -15,7 +15,7 @@ export default function View() {
 
   const renderGIF = () => {
     if (gif) {
-      return <Gif gif={gif} width={500} />;
+      return <Gif gif={gif} width={500} percentWidth="90%" />;
     }
     return <h1> No GIF available </h1>;
   };
