@@ -1,10 +1,11 @@
 import { clsx } from 'clsx';
 import { Helmet } from 'react-helmet';
-import { memo } from 'react';
+import { memo, useContext } from 'react';
 import styles from '../centurion.module.css';
 import { CurrentColors } from '../index';
 import { imports, tweenMax } from '../scripts/imports';
 import { lavalampFragment, lavalampJavascript, lavalampVertex } from '../scripts/lavalamp';
+import { AuthContext } from '../../../contexts/AuthContext';
 
 interface Props {
   colors: CurrentColors;
@@ -13,12 +14,16 @@ interface Props {
 }
 
 function Background({ colors, progression }: Props) {
+  const { screen } = useContext(AuthContext);
+
   return (
     <div className="h-screen w-full top-0 left-0 absolute -z-20">
       <Helmet>
         <script type="text/javascript">{imports()}</script>
         <script type="text/javascript">{tweenMax()}</script>
-        <script type="text/javascript">{lavalampJavascript(colors.start, colors.end, progression)}</script>
+        <script type="text/javascript">
+          {lavalampJavascript(colors.start, colors.end, progression, screen?.scaleFactor)}
+        </script>
         <script type="x-shader/x-vertex" id="vertexMetaballs">
           {lavalampVertex()}
         </script>

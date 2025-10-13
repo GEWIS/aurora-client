@@ -13,7 +13,7 @@ export default function Strobe({ hornCount }: Props) {
         styles.strobe,
       )}
     >
-      <p className="text-gray-500 text-[800px]">{hornCount}</p>
+      <p className="text-gray-500 text-[48rem]">{hornCount}</p>
     </div>
   );
 }

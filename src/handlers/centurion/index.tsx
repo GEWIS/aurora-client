@@ -191,7 +191,7 @@ export default function CenturionView({ socket }: Props) {
 
   const renderHornCount = () => {
     if (hornCount === undefined) return null;
-    return <div className="text-white text-[550px] -m-20">{makeTextDrunk(hornCount.toString())}</div>;
+    return <div className="text-white text-[36rem] -m-20">{makeTextDrunk(hornCount.toString())}</div>;
   };
 
   const renderBackground = () => {
