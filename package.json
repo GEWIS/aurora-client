@@ -21,7 +21,7 @@
     "socket.io-client": "^4.8.1",
     "styled-components": "^6.1.19",
     "vite": "^6.3.5",
-    "vite-plugin-svgr": "^4.3.0",
+    "vite-plugin-svgr": "^4.5.0",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "scripts": {
