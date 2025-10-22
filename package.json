@@ -9,7 +9,7 @@
     "@giphy/js-fetch-api": "^5.7.0",
     "@giphy/react-components": "^10.1.0",
     "@hey-api/client-fetch": "^0.10.0",
-    "@tailwindcss/postcss": "^4.1.14",
+    "@tailwindcss/postcss": "^4.1.15",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.24",
     "react": "^19.2.0",
