@@ -15,7 +15,7 @@ export default function TrainPoster({ visible, timeout }: Props) {
     getTrains()
       .then((res) => setTrains(res.data))
       .catch((e) => console.error(e));
-  });
+  }, [visible]);
 
   const parseTime = (d: Date) => {
     return `${d.getHours().toString().padStart(2, '0')}:${d.getMinutes().toString().padStart(2, '0')}`;
