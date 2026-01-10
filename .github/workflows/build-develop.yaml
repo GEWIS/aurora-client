@@ -17,7 +17,6 @@ jobs:
         with:
           repository: gewis/aurora-core
           ref: develop
-          path: aurora-core
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -34,21 +33,13 @@ jobs:
         with:
           cmd: tsoa
 
-      - name: Switch to client
-        run: cd ../aurora-client
-
-      - name: Install dependencies
-        uses: borales/actions-yarn@v5
-        with:
-          cmd: install
-
       - name: Generate client
         uses: borales/actions-yarn@v5
         with:
-          cmd: gen-client
+          cmd: gen-client-client
 
       - name: Copy client
-        run: cp -r ./src/api/ ./api
+        run: cp -r ../aurora-client/src/api/ ./api
 
       - uses: actions/upload-artifact@v4
         with:
