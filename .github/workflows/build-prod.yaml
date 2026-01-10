@@ -19,11 +19,6 @@ jobs:
           ref: master
           path: aurora-core
 
-      - name: Checkout client
-        uses: actions/checkout@v4
-        with:
-          path: aurora-client
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -31,24 +26,29 @@ jobs:
 
       - name: Install dependencies
         uses: borales/actions-yarn@v5
-        working-directory: aurora-client
         with:
           cmd: install
 
       - name: Run tsoa
         uses: borales/actions-yarn@v5
-        working-directory: aurora-core
         with:
           cmd: tsoa
 
+      - name: Switch to client
+        run: cd ../aurora-client
+
+      - name: Install dependencies
+        uses: borales/actions-yarn@v5
+        with:
+          cmd: install
+
       - name: Generate client
-        working-directory: aurora-client
         uses: borales/actions-yarn@v5
         with:
           cmd: gen-client
 
       - name: Copy client
-        run: cp -r aurora-client/src/api/ ./api
+        run: cp -r ./src/api/ ./api
 
       - uses: actions/upload-artifact@v4
         with:
