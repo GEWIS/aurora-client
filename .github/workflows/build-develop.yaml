@@ -17,6 +17,9 @@ jobs:
         with:
           repository: gewis/aurora-core
           ref: develop
+          path: aurora-core
+
+      - run: cd aurora-core
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -47,11 +50,7 @@ jobs:
           cmd: install
           dir: ./aurora-client
 
-      - run: pwd
-      - run: ls -la
-
-      - name: Switch to client
-        run: cd ..
+      - run: cd ..
 
       - name: Checkout client
         uses: actions/checkout@v4
@@ -60,8 +59,6 @@ jobs:
         uses: borales/actions-yarn@v5
         with:
           cmd: install
-      
-      - run: pwd
 
       - name: Generate client
         uses: borales/actions-yarn@v5
