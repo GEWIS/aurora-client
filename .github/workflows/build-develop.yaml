@@ -48,7 +48,10 @@ jobs:
           dir: ./aurora-client
 
       - name: Switch to client
-        run: cd ../aurora-client
+        run: cd ..
+
+      - name: Checkout core
+        uses: actions/checkout@v4
 
       - name: Install dependencies
         uses: borales/actions-yarn@v5
