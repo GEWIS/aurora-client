@@ -30,8 +30,8 @@ jobs:
           node-version: "22.x"
 
       - name: Install dependencies
-        working-directory: aurora-client
         uses: borales/actions-yarn@v5
+        working-directory: aurora-client
         with:
           cmd: install
 
