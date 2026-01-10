@@ -26,7 +26,6 @@ jobs:
 
       - name: Install dependencies
         uses: borales/actions-yarn@v5
-        working-directory: aurora-client
         with:
           cmd: install
           dir: ./aurora-core
@@ -48,6 +47,14 @@ jobs:
         with:
           cmd: install
           dir: ./aurora-client
+
+      - name: Switch to client
+        run: cd ../aurora-client
+
+      - name: Install dependencies
+        uses: borales/actions-yarn@v5
+        with:
+          cmd: install
 
       - name: Generate client
         uses: borales/actions-yarn@v5
