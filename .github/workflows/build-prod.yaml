@@ -26,7 +26,6 @@ jobs:
 
       - name: Install dependencies
         uses: borales/actions-yarn@v5
-        working-directory: aurora-client
         with:
           cmd: install
 
