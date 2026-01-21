@@ -41,7 +41,6 @@ jobs:
         with:
           path: aurora-client
 
-
       - name: Install dependencies
         uses: borales/actions-yarn@v5
         with:
