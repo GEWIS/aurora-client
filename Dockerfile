@@ -10,10 +10,10 @@ RUN git clone https://github.com/GEWIS/aurora-core.git
 WORKDIR /usr/src/app/aurora-core
 RUN yarn
 RUN yarn tsoa
-RUN yarn gen-client-client
 
 WORKDIR /usr/src/app/aurora-client
 RUN yarn
+RUN yarn gen-client
 RUN yarn build
 
 # The target image that will be run
