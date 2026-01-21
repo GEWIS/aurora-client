@@ -30,11 +30,13 @@ jobs:
         uses: borales/actions-yarn@v5
         with:
           cmd: install
+          dir: ./aurora-core
 
       - name: Run tsoa
         uses: borales/actions-yarn@v5
         with:
           cmd: tsoa
+          dir: ./aurora-core
 
       - run: cd ..
 
