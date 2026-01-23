@@ -41,6 +41,9 @@ jobs:
         with:
           path: aurora-client
 
+      - name: Enable Corepack
+        run: cd aurora-client && corepack enable
+
       - name: Install dependencies
         uses: borales/actions-yarn@v5
         with:
