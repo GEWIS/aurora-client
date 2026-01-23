@@ -3,13 +3,6 @@ import react from '@vitejs/plugin-react-swc';
 
 export default defineConfig({
   base: '/',
-  css: {
-    preprocessorOptions: {
-      scss: {
-        api: 'modern-compiler',
-      },
-    },
-  },
   plugins: [react()],
   server: {
     host: '0.0.0.0',

@@ -53,7 +53,7 @@ export default function AuthContextProvider({ children }: PropsWithChildren) {
 
   useEffect(() => {
     if (user && urlSearchParams.has('key')) {
-      navigate('');
+      void navigate('');
     }
   }, [navigate, urlSearchParams, user]);
 
