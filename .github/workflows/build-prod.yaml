@@ -19,6 +19,9 @@ jobs:
           ref: master
           path: aurora-core
 
+      - name: Enable Corepack for core
+        run: cd aurora-core && corepack enable
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
