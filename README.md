@@ -9,7 +9,12 @@ the client can make HTTP calls to the core to request this data.
 ## Prerequisites
 - NodeJS 22.
 - A locally running copy of [aurora-core](https://github.com/gewis/narrowcasting-core).
-  The client repository should be cloned next to the core repository, so in the folder `../aurora-core`.
+  The backoffice repository should be cloned next to the core repository, like the following:
+```
+parent-dir/
+├── aurora-core/
+└── aurora-client/
+```
   This is necessary to generate the required API client files (installation step 2).
 
 ## Installation
