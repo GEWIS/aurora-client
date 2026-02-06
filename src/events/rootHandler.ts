@@ -19,4 +19,18 @@ export default function registerRootHandler(setCurrentHandler: Dispatch<SetState
   rootSocket.on('handler_remove', () => {
     setCurrentHandler(null);
   });
+
+  const startTime = Date.now();
+  const status = {
+    uptimeSeconds: 0,
+    systemTimestamp: startTime,
+    latencyMilliseconds: 0,
+  };
+  setInterval(() => {
+    status.systemTimestamp = Date.now();
+    status.uptimeSeconds = Math.floor((Date.now() - startTime) / 1000);
+    rootSocket.emit('status:update', status, () => {
+      status.latencyMilliseconds = Math.floor((Date.now() - status.systemTimestamp) / 2);
+    });
+  }, 5 * 1000);
 }
