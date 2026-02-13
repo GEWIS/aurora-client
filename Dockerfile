@@ -8,6 +8,7 @@ COPY ./ ./aurora-client
 # Fetch files from Aurora Core
 RUN git clone https://github.com/GEWIS/aurora-core.git
 WORKDIR /usr/src/app/aurora-core
+RUN corepack enable
 RUN yarn
 RUN yarn tsoa
 
