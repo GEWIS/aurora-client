@@ -106,13 +106,12 @@ export default function StaticPosterView({ socket }: Props) {
         because the precedence is that the last CSS definition will be used */}
         {settings?.stylesheet && <link rel="stylesheet" href={URL_CUSTOM_STYLESHEET} />}
         <div className="overflow-hidden absolute w-full h-full">{renderPoster()}</div>
-        {clock && (
-          <ProgressBar
+        <ProgressBar
             logo={settings?.progressBarLogo ? URL_PROGRESS_BAR_LOGO : ''}
             clockTick={settings?.clockShouldTick}
             minimal={settings?.defaultMinimal}
-          />
-        )}
+            hide={!clock}
+        />
       </div>
       <ChangeTrackOverlay socket={socket} />
     </>
