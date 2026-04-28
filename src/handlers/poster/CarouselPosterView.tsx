@@ -1,5 +1,5 @@
 import './components/index.scss';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Socket } from 'socket.io-client';
 import {
   FooterSize,
@@ -27,6 +27,8 @@ export default function CarouselPosterView({ socket }: Props) {
   const [posterTimeout, setPosterTimeout] = useState<ReturnType<typeof setTimeout> | null>(null);
   const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState('');
+  const postersRef = useRef(posters);
+  postersRef.current = posters;
 
   const refreshPosters = async () => {
     setLoading(true);
@@ -58,14 +60,18 @@ export default function CarouselPosterView({ socket }: Props) {
 
     const nextPoster = posters[posterIndex];
     const timeout = setTimeout(
-      () => setPosterIndex((i) => (i! + 1) % posters.length),
+      () =>
+        setPosterIndex((i) => {
+          const len = postersRef.current?.length ?? 0;
+          return len > 0 ? (i! + 1) % len : 0;
+        }),
       nextPoster.defaultTimeout * 1000,
     );
     setPosterTimeout(timeout);
 
     return () => clearTimeout(timeout);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [posterIndex, posters]);
+  }, [posterIndex]);
 
   useEffect(() => {
     if (posterIndex === 0) {
@@ -92,18 +98,14 @@ export default function CarouselPosterView({ socket }: Props) {
   }, []);
 
   useEffect(() => {
-    if (posters && !posterTimeout && !loading) {
-      const randomIndex = Math.floor(Math.random() * posters.length);
-      setPosterIndex(randomIndex);
+    if (!posters || posters.length === 0 || loading) return;
+    if (posterIndex === undefined || posterIndex >= posters.length) {
+      setPosterIndex(Math.floor(Math.random() * posters.length));
     }
-  }, [posters, loading, posterTimeout]);
+  }, [posters, loading, posterIndex]);
 
   useEffect(() => {
     const handleUpdatePosters = () => {
-      setPosterTimeout((current) => {
-        if (current) clearTimeout(current);
-        return null;
-      });
       refreshPosters().catch((e) => console.error(e));
     };
 
