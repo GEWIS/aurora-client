@@ -118,7 +118,9 @@ export default function CarouselPosterView({ socket }: Props) {
 
   const selectedPoster = posters && posters.length > 0 && posterIndex !== undefined ? posters[posterIndex] : undefined;
 
-  const progressBarMinimal = settings?.defaultMinimal || selectedPoster?.footerSize === FooterSize.MINIMAL;
+  const progressBarHidden = selectedPoster?.footerSize === FooterSize.HIDDEN;
+  const progressBarMinimal =
+    !progressBarHidden && (settings?.defaultMinimal || selectedPoster?.footerSize === FooterSize.MINIMAL);
 
   return (
     <>
@@ -132,8 +134,8 @@ export default function CarouselPosterView({ socket }: Props) {
           <PosterCarousel posters={posters || []} currentPoster={!posterIndex ? 0 : posterIndex} setTitle={setTitle} />
           <PosterWatermark
             posterIndex={posterIndex ?? -1}
-            progressBarMinimal={progressBarMinimal}
-            progressBarLogo={settings?.progressBarLogo}
+            progressBarMinimal={progressBarMinimal || progressBarHidden}
+            progressBarLogo={!progressBarHidden && settings?.progressBarLogo}
             borrelMode={borrelMode}
           />
           <ProgressBar
@@ -142,6 +144,7 @@ export default function CarouselPosterView({ socket }: Props) {
             seconds={posterTimeout !== undefined ? selectedPoster?.defaultTimeout : undefined}
             posterIndex={posterIndex}
             minimal={progressBarMinimal}
+            hide={progressBarHidden}
             nextPoster={nextPoster}
             pausePoster={pausePoster}
             borrelMode={borrelMode}
