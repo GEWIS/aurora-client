@@ -17,8 +17,13 @@ export default function VideoPoster({ source, visible }: Props) {
   const ref = useRef<HTMLVideoElement | null>(null);
 
   useEffect(() => {
-    if (!visible || !ref || !ref.current) return;
-    ref.current.play().catch(console.error);
+    if (!ref.current) return;
+    if (visible) {
+      ref.current.currentTime = 0;
+      ref.current.play().catch(console.error);
+    } else {
+      ref.current.pause();
+    }
   }, [visible]);
 
   return (
