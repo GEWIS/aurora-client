@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import { LocalPosterResponse, PosterType } from '../../../api';
+import { PosterResponse, PosterType } from '../../../api';
 import LogoPoster from '../types/LogoPoster';
 import ImagePoster from '../types/ImagePoster';
 import ExternalPoster from '../types/ExternalPoster';
@@ -12,7 +12,7 @@ import TrainPoster from '../types/TrainPoster';
 import OlympicsPoster from '../types/OlympicsPoster';
 
 interface Props {
-  posters: LocalPosterResponse[];
+  posters: PosterResponse[];
   currentPoster: number;
   setTitle: (title: string) => void;
 }
@@ -24,7 +24,7 @@ export default function PosterCarousel({ posters, currentPoster, setTitle }: Pro
   );
   const nextPoster = useMemo(() => (currentPoster + 1) % posters.length, [currentPoster, posters.length]);
 
-  const renderPoster = (poster: LocalPosterResponse, index: number) => {
+  const renderPoster = (poster: PosterResponse, index: number) => {
     if (index !== previousPoster && index !== currentPoster && index !== nextPoster) return null;
 
     const visible = index === currentPoster || index === previousPoster;

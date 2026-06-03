@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { GewisPhotoAlbumParams, getPhoto, LocalPosterResponse } from '../../../api';
+import { GewisPhotoAlbumParams, getPhoto, PosterResponse } from '../../../api';
 import ImagePoster from './ImagePoster';
 
 interface Props {
-  poster: LocalPosterResponse;
+  poster: PosterResponse;
   visible: boolean;
   setTitle: (title: string) => void;
 }

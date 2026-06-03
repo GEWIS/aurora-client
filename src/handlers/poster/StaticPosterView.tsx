@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import {
   getPosterSettings,
   getStaticPosterHandlerState,
-  LocalPosterResponse,
+  PosterResponse,
   PosterScreenSettingsResponse,
   StaticPosterHandlerState,
 } from '../../api';
@@ -28,7 +28,7 @@ interface Props {
 
 export default function StaticPosterView({ socket }: Props) {
   const [settings, setSettings] = useState<PosterScreenSettingsResponse | undefined>();
-  const [activePoster, setActivePoster] = useState<LocalPosterResponse | null>(null);
+  const [activePoster, setActivePoster] = useState<PosterResponse | null>(null);
   const [clock, setClock] = useState(false);
 
   const handlePosterChange = (payload: StaticPosterHandlerState) => {

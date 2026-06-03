@@ -1,13 +1,7 @@
 import './components/index.scss';
 import { useEffect, useRef, useState } from 'react';
 import { Socket } from 'socket.io-client';
-import {
-  FooterSize,
-  getPosters,
-  getPosterSettings,
-  LocalPosterResponse,
-  PosterScreenSettingsResponse,
-} from '../../api';
+import { FooterSize, getPosters, getPosterSettings, PosterResponse, PosterScreenSettingsResponse } from '../../api';
 import ChangeTrackOverlay from '../../overlays/ChangeTrackOverlay';
 import PosterCarousel from './components/Carousel';
 import ProgressBar from './components/ProgressBar';
@@ -20,7 +14,7 @@ interface Props {
 
 export default function CarouselPosterView({ socket }: Props) {
   const [settings, setSettings] = useState<PosterScreenSettingsResponse | undefined>();
-  const [posters, setPosters] = useState<LocalPosterResponse[]>();
+  const [posters, setPosters] = useState<PosterResponse[]>();
   const [borrelMode, setBorrelMode] = useState(false);
   const [posterIndex, setPosterIndex] = useState<number>();
   // ReturnType used instead of number as one of the dependencies uses @types/node as dependency
