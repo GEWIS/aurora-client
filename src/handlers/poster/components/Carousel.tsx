@@ -33,11 +33,17 @@ export default function PosterCarousel({ posters, currentPoster, setTitle }: Pro
       case 'logo':
         return <LogoPoster key={poster.name} />;
       case 'img':
-        return <ImagePoster key={poster.name} source={poster.file!.location} />;
+        return <ImagePoster key={poster.name} source={poster.files.map((f) => f.location)} />;
       case 'extern':
         return <ExternalPoster key={poster.name} url={poster.uri!} visible={visible} />;
       case 'video':
-        return <VideoPoster key={poster.name} source={poster.file!.location} visible={index === currentPoster} />;
+        return (
+          <VideoPoster
+            key={poster.name}
+            source={poster.files.map((f) => f.location)}
+            visible={index === currentPoster}
+          />
+        );
       case 'photo':
         return <PhotoPoster key={poster.name} poster={poster} visible={visible} setTitle={setTitle} />;
       case 'borrel-logo':

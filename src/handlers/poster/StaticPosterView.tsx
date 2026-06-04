@@ -92,11 +92,11 @@ export default function StaticPosterView({ socket }: Props) {
       case 'logo':
         return <LogoPoster />;
       case 'img':
-        return <ImagePoster source={activePoster.file!.location} />;
+        return <ImagePoster source={activePoster.files.map((f) => f.location)} />;
       case 'extern':
         return <ExternalPoster url={activePoster.uri!} visible />;
       case 'video':
-        return <VideoPoster source={activePoster.file!.location} visible />;
+        return <VideoPoster source={activePoster.files.map((f) => f.location)} visible />;
       case 'borrel-logo':
         return <BorrelLogoPoster />;
       case 'borrel-wall-of-shame':

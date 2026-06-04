@@ -6,7 +6,7 @@ interface Props {
 }
 
 export default function VideoPoster({ source, visible }: Props) {
-  let sourceUrl: string;
+  let sourceUrl: string | undefined;
   if (Array.isArray(source)) {
     const index = Math.floor(Math.random() * source.length);
     sourceUrl = source[index];
@@ -25,6 +25,8 @@ export default function VideoPoster({ source, visible }: Props) {
       ref.current.pause();
     }
   }, [visible]);
+
+  if (!sourceUrl) return <div className="w-full h-full bg-black" />;
 
   return (
     <video className="w-full h-full" muted loop ref={ref} controls={false}>
