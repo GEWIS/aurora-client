@@ -74,7 +74,6 @@ jobs:
     with:
       node-version: "22.x"
       artifact-name: "api-client"
-      prepare-command: "corepack enable"
       artifact-path: "src/api"
       lint: true
       format: true
