@@ -38,7 +38,7 @@ jobs:
 
       - name: Run tsoa
         run: pnpm tsoa
-        working-directory: ./aurora-core
+        working-directory: ./aurora-core/apps/aurora-core
 
       - name: Checkout client
         uses: actions/checkout@v4
