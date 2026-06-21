@@ -1,3 +1,6 @@
+> [!IMPORTANT]  
+> **This repository has been archived as of June 21, 2026.** The aurora-client codebase has has migrated to the [aurora monorepo](https://github.com/GEWIS/aurora). All future development and issues should be directed there.
+
 # Aurora Client
 This repository contains the narrowcasting application of the Aurora software suite.
 It is the subscriber that is used by _Screen_ entities.
